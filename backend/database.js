@@ -1,3 +1,5 @@
+// Module to connect to database
+
 const mysql = require("mysql");
 require("dotenv").config();
 
