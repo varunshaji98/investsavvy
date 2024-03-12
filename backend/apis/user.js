@@ -34,8 +34,7 @@ router.get("/user/by_uid", (request, response) => {
 router.post("/user/create", (request, response) => {
     db.connection.query(
     `INSERT into Users (first_name, last_name, email, password_hash, user_type) 
-        VALUES ('${request.body.first_name}','${request.body.last_name}','${request.body.email}', '${request.body.password_hash}', '${request.body.user_type}')`,
-    (errors) => {
+     VALUES ('${request.body.first_name}','${request.body.last_name}','${request.body.email}', '${request.body.password_hash}', '${request.body.user_type}')`, (errors) => {
         if (errors) {
         console.log(errors);
         response.status(500).send("Internal Server Error");
@@ -53,9 +52,19 @@ router.post("/user/create", (request, response) => {
     });
 });
 
-// [TO-DO] PATCH /user/by_uid?password_hash=<string>
-// Description : Modify the user password
-
+// PATCH /user/by_uid
+// Description : Modify the user password hash
+router.patch("/user/by_uid", (request, response) => {
+    db.connection.query(`UPDATE Users SET password_hash = ${request.body.password_hash} where id = ${request.query.id}`, (errors) => {
+      if (errors) {
+        console.log(errors);
+        response.status(500).send("Internal Server Error");
+      } else {
+        response.status(200).send("Password updated");
+      }
+    });
+  });
+  
 // [TO-DO] DELETE /user/by_uid
 // Description : Delete an existing user. Also delete all their survey results and watchlists
 

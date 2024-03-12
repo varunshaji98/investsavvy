@@ -2,10 +2,12 @@
 
 const express = require("express");
 const user = require("./apis/user");
+const survey = require("./apis/survey");
 
 let server = express();
 server.use(express.json());
 server.use(user.router);
+server.use(survey.router);
 
 server.listen(3000, (errors) => {
   if (errors) {
