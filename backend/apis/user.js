@@ -48,7 +48,7 @@ router.get("/user/by_uid", (request, response) => {
             if (utils.isEmptyObject(results))
                 response.status(404).send("No records found");
             else
-                response.status(200).send(results);response.status(200).send(results);
+                response.status(200).send(results);
         }
     });
 });
