@@ -14,151 +14,162 @@
 
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="css/sb-admin-2.css" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container">
-        <h1>Investment Risk Assessment</h1>
-        <form id="riskAssessmentForm">
-            <label for="name"><strong>Name:</strong></label>
-            <input type="text" id="name" name="name" required>
+    <div class="container py-5">
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+            <div class="col-xl-10 col-lg-12 col-md-9">
+                <h1 class="h3 m-0 font-weight-bold text-primary mb-4 text-center">Investment Risk Assessment</h1>
+                <form id="riskAssessmentForm">
+                    <div class="form-group py-2">
+                        <label for="name"><strong>Name:</strong></label>
+                        <input class="form-control form-control-user" type="text" id="name" name="name" required>
+                    </div>
 
-            <label for="age"><strong>Age:</strong></label>
-            <input type="number" id="age" name="age" required>
+                    <div class="form-group py-1.5">
+                        <label for="age"><strong>Age:</strong></label>
+                        <input class="form-control" type="number" id="age" name="age" required>
+                    </div>
+                    <div class="form-group py-1.5">
+                        <label for="occupation"><strong>Occupation:</strong></label>
+                        <select class="form-control" id="occupation" name="occupation" required>
+                            <option value="" disabled selected>Select an occupation</option>
+                            <option value="Administrative Assistant">Administrative Assistant</option>
+                            <option value="Secretary">Secretary</option>
+                            <option value="Receptionist">Receptionist</option>
+                            <option value="Office Manager">Office Manager</option>
+                            <option value="Sales Representative">Sales Representative</option>
+                            <option value="Customer Service Representative">Customer Service Representative</option>
+                            <option value="Sales Manager">Sales Manager</option>
+                            <option value="Retail Salesperson">Retail Salesperson</option>
+                            <option value="Software Developer">Software Developer</option>
+                            <option value="Systems Analyst">Systems Analyst</option>
+                            <option value="IT Manager">IT Manager</option>
+                            <option value="Network Administrator">Network Administrator</option>
+                            <option value="Registered Nurse">Registered Nurse</option>
+                            <option value="Doctor/Physician">Doctor/Physician</option>
+                            <option value="Medical Assistant">Medical Assistant</option>
+                            <option value="Pharmacist">Pharmacist</option>
+                            <option value="Teacher">Teacher</option>
+                            <option value="Professor">Professor</option>
+                            <option value="School Principal">School Principal</option>
+                            <option value="Librarian">Librarian</option>
+                            <option value="Accountant">Accountant</option>
+                            <option value="Financial Analyst">Financial Analyst</option>
+                            <option value="Bank Teller">Bank Teller</option>
+                            <option value="Financial Advisor">Financial Advisor</option>
+                            <option value="Factory Worker">Factory Worker</option>
+                            <option value="Production Supervisor">Production Supervisor</option>
+                            <option value="Machinist">Machinist</option>
+                            <option value="Quality Control Inspector">Quality Control Inspector</option>
+                            <option value="Carpenter">Carpenter</option>
+                            <option value="Electrician">Electrician</option>
+                            <option value="Plumber">Plumber</option>
+                            <option value="Welder">Welder</option>
+                            <option value="Graphic Designer">Graphic Designer</option>
+                            <option value="Artist">Artist</option>
+                            <option value="Photographer">Photographer</option>
+                            <option value="Writer/Author">Writer/Author</option>
+                            <option value="Business Owner/Entrepreneur">Business Owner/Entrepreneur</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Executive">Executive</option>
+                            <option value="Operations Manager">Operations Manager</option>
+                            <option value="Truck Driver">Truck Driver</option>
+                            <option value="Pilot">Pilot</option>
+                            <option value="Logistics Coordinator">Logistics Coordinator</option>
+                            <option value="Warehouse Worker">Warehouse Worker</option>
+                            <option value="Human Resources Manager">Human Resources Manager</option>
+                            <option value="HR Specialist">HR Specialist</option>
+                            <option value="Recruitment Coordinator">Recruitment Coordinator</option>
+                            <option value="Social Worker">Social Worker</option>
+                            <option value="Counselor">Counselor</option>
+                            <option value="Nonprofit Manager">Nonprofit Manager</option>
+                            <option value="Lawyer/Attorney">Lawyer/Attorney</option>
+                            <option value="Paralegal">Paralegal</option>
+                            <option value="Legal Assistant">Legal Assistant</option>
+                            <option value="Real Estate Agent">Real Estate Agent</option>
+                            <option value="Property Manager">Property Manager</option>
+                            <option value="Appraiser">Appraiser</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+                    <div class="form-group py-1.5">
+                        <label for="incomeRange"><strong>Annual Income Range:</strong></label>
+                        <select class="form-control" id="incomeRange" name="incomeRange" required>
+                            <option value="" disabled selected style="display:none;">Choose an option</option>
+                            <option value="<30000">Below $30,000</option>
+                            <option value="30000-50000">$30,000 - $50,000</option>
+                            <option value="50001-100000">$50,001 - $100,000</option>
+                            <option value="100001-150000">$100,001 - $150,000</option>
+                            <option value=">150000">Above $150,000</option>
+                        </select>
+                    </div>
 
-            <label for="occupation"><strong>Occupation:</strong></label>
-            <select id="occupation" name="occupation" required>
-                <option value="" disabled selected>Select an occupation</option>
-                <option value="Administrative Assistant">Administrative Assistant</option>
-                <option value="Secretary">Secretary</option>
-                <option value="Receptionist">Receptionist</option>
-                <option value="Office Manager">Office Manager</option>
-                <option value="Sales Representative">Sales Representative</option>
-                <option value="Customer Service Representative">Customer Service Representative</option>
-                <option value="Sales Manager">Sales Manager</option>
-                <option value="Retail Salesperson">Retail Salesperson</option>
-                <option value="Software Developer">Software Developer</option>
-                <option value="Systems Analyst">Systems Analyst</option>
-                <option value="IT Manager">IT Manager</option>
-                <option value="Network Administrator">Network Administrator</option>
-                <option value="Registered Nurse">Registered Nurse</option>
-                <option value="Doctor/Physician">Doctor/Physician</option>
-                <option value="Medical Assistant">Medical Assistant</option>
-                <option value="Pharmacist">Pharmacist</option>
-                <option value="Teacher">Teacher</option>
-                <option value="Professor">Professor</option>
-                <option value="School Principal">School Principal</option>
-                <option value="Librarian">Librarian</option>
-                <option value="Accountant">Accountant</option>
-                <option value="Financial Analyst">Financial Analyst</option>
-                <option value="Bank Teller">Bank Teller</option>
-                <option value="Financial Advisor">Financial Advisor</option>
-                <option value="Factory Worker">Factory Worker</option>
-                <option value="Production Supervisor">Production Supervisor</option>
-                <option value="Machinist">Machinist</option>
-                <option value="Quality Control Inspector">Quality Control Inspector</option>
-                <option value="Carpenter">Carpenter</option>
-                <option value="Electrician">Electrician</option>
-                <option value="Plumber">Plumber</option>
-                <option value="Welder">Welder</option>
-                <option value="Graphic Designer">Graphic Designer</option>
-                <option value="Artist">Artist</option>
-                <option value="Photographer">Photographer</option>
-                <option value="Writer/Author">Writer/Author</option>
-                <option value="Business Owner/Entrepreneur">Business Owner/Entrepreneur</option>
-                <option value="Manager">Manager</option>
-                <option value="Executive">Executive</option>
-                <option value="Operations Manager">Operations Manager</option>
-                <option value="Truck Driver">Truck Driver</option>
-                <option value="Pilot">Pilot</option>
-                <option value="Logistics Coordinator">Logistics Coordinator</option>
-                <option value="Warehouse Worker">Warehouse Worker</option>
-                <option value="Human Resources Manager">Human Resources Manager</option>
-                <option value="HR Specialist">HR Specialist</option>
-                <option value="Recruitment Coordinator">Recruitment Coordinator</option>
-                <option value="Social Worker">Social Worker</option>
-                <option value="Counselor">Counselor</option>
-                <option value="Nonprofit Manager">Nonprofit Manager</option>
-                <option value="Lawyer/Attorney">Lawyer/Attorney</option>
-                <option value="Paralegal">Paralegal</option>
-                <option value="Legal Assistant">Legal Assistant</option>
-                <option value="Real Estate Agent">Real Estate Agent</option>
-                <option value="Property Manager">Property Manager</option>
-                <option value="Appraiser">Appraiser</option>
-                <!-- Add more options as needed -->
-            </select>
-            
+                    <div class="form-group py-1.5">
+                        <label for="investmentExperience"><strong>Investment Experience:</strong></label>
+                        <div class="radio-group custom-control mr-auto">
+                            <label class="mr-4"><input type="radio" name="investmentExperience" value="yes" onclick="showExperienceDetails()"> Yes</label>
+                            <label class="mr-4"><input type="radio" name="investmentExperience" value="no" onclick="hideExperienceDetails()"> No</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group py-1.5">
+                        <label for="investmentGoals"><strong>Investment Goals:</strong></label>
+                        <div class="custom-control custom-checkbox mr-auto">
+                            <label class="mr-4"><input type="checkbox" name="investmentGoals" value="Capital Preservation"> Capital preservation</label>
+                            <label class="mr-4"><input type="checkbox" name="investmentGoals" value="Income Generation"> Income generation</label>
+                            <label class="mr-4"><input type="checkbox" name="investmentGoals" value="Wealth Accumulation"> Wealth accumulation</label>
+                            <label class="mr-4"><input type="checkbox" name="investmentGoals" value="Speculative Gains"> Speculative gains</label>
+                        </div>
+                    </div>
 
-            <label for="incomeRange"><strong>Annual Income Range:</strong></label>
-            <select id="incomeRange" name="incomeRange" required>
-                <option value="" disabled selected style="display:none;">Choose an option</option>
-                <option value="<30000">Below $30,000</option>
-                <option value="30000-50000">$30,000 - $50,000</option>
-                <option value="50001-100000">$50,001 - $100,000</option>
-                <option value="100001-150000">$100,001 - $150,000</option>
-                <option value=">150000">Above $150,000</option>
-            </select>
+                    <div class="form-group py-1.5">
+                        <label for="riskTolerance"><strong>Risk Tolerance:</strong></label>
+                        <select class="form-control" id="riskTolerance" name="riskTolerance" required>
+                            <option value="" disabled selected style="display:none;">Choose an option</option>
+                            <option value="veryConservative">Very conservative: The individual prefers low-risk, stable returns.</option>
+                            <option value="conservative">Conservative: Willing to accept some risk for moderate returns.</option>
+                            <option value="moderate">Moderate: Balanced approach between risk and returns.</option>
+                            <option value="aggressive">Aggressive: Seeks higher returns, willing to take higher risks.</option>
+                            <option value="veryAggressive">Very aggressive: Pursues maximum returns, comfortable with significant risks.</option>
+                        </select>
+                    </div>
 
-            <div class="form-group">
-                <label for="investmentExperience"><strong>Investment Experience:</strong></label>
-                <div class="radio-group">
-                    <label><input type="radio" name="investmentExperience" value="yes" onclick="showExperienceDetails()"> Yes</label>
-                    <label><input type="radio" name="investmentExperience" value="no" onclick="hideExperienceDetails()"> No</label>
-                </div>
+                    <div class="form-group py-1.5">
+                        <label for="timeHorizon"><strong>Time Horizon:</strong></label>
+                        <select class="form-control" id="timeHorizon" name="timeHorizon" required>
+                            <option value="" disabled selected style="display:none;">Choose an option</option>
+                            <option value="Short Term">Short-term (less than 1 year)</option>
+                            <option value="Medium Term">Medium-term (1-5 years)</option>
+                            <option value="Long Term">Long-term (5 years or more)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group py-1.5">
+                        <label for="knowledgeInterest"><strong>Knowledge and Interest:</strong></label>
+                        <select class="form-control" id="knowledgeInterest" name="knowledgeInterest" required>
+                            <option value="" disabled selected style="display:none;">Choose an option</option>
+                            <option value="novice">Novice (limited knowledge)</option>
+                            <option value="intermediate">Intermediate (basic understanding)</option>
+                            <option value="advanced">Advanced (experienced and knowledgeable)</option>
+                        </select>
+                    </div>
+
+                    <!-- <button type="button" onclick="submitAssessment()">Submit Assessment</button> -->
+                    <div class="form-group py-3">
+                        <button class="btn btn-primary btn-user" onclick="calculateCategory()">Submit</button>
+                    </div>
+                    
+                    <div id="resultCategory" style="display: none;">
+                        <h3>Your Category:</h3>
+                        <p id="categoryResult"></p>
+                    </div>
+                </form>
             </div>
-            
-            <div class="form-group" id="experienceDetailsGroup" style="display: none;">
-                <label for="experienceDetails"><strong>If yes, please briefly describe your investment experience:</strong></label>
-                <textarea id="experienceDetails" name="experienceDetails"></textarea>
-            </div>
-            
-            <div class="form-group">
-                <label for="investmentGoals"><strong>Investment Goals:</strong></label>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="investmentGoals" value="Capital Preservation"> Capital preservation</label>
-                    <label><input type="checkbox" name="investmentGoals" value="Income Generation"> Income generation</label>
-                    <label><input type="checkbox" name="investmentGoals" value="Wealth Accumulation"> Wealth accumulation</label>
-                    <label><input type="checkbox" name="investmentGoals" value="Speculative Gains"> Speculative gains</label>
-                </div>
-            </div>
-
-            <label for="riskTolerance"><strong>Risk Tolerance:</strong></label>
-            <select id="riskTolerance" name="riskTolerance" required>
-                <option value="" disabled selected style="display:none;">Choose an option</option>
-                <option value="veryConservative">Very conservative: The individual prefers low-risk, stable returns.</option>
-                <option value="conservative">Conservative: Willing to accept some risk for moderate returns.</option>
-                <option value="moderate">Moderate: Balanced approach between risk and returns.</option>
-                <option value="aggressive">Aggressive: Seeks higher returns, willing to take higher risks.</option>
-                <option value="veryAggressive">Very aggressive: Pursues maximum returns, comfortable with significant risks.</option>
-            </select>
-
-            <label for="timeHorizon"><strong>Time Horizon:</strong></label>
-            <select id="timeHorizon" name="timeHorizon" required>
-                <option value="" disabled selected style="display:none;">Choose an option</option>
-                <option value="Short Term">Short-term (less than 1 year)</option>
-                <option value="Medium Term">Medium-term (1-5 years)</option>
-                <option value="Long Term">Long-term (5 years or more)</option>
-            </select>
-
-            <label for="knowledgeInterest"><strong>Knowledge and Interest:</strong></label>
-            <select id="knowledgeInterest" name="knowledgeInterest" required>
-                <option value="" disabled selected style="display:none;">Choose an option</option>
-                <option value="novice">Novice (limited knowledge)</option>
-                <option value="intermediate">Intermediate (basic understanding)</option>
-                <option value="advanced">Advanced (experienced and knowledgeable)</option>
-            </select>
-
-            <!-- <button type="button" onclick="submitAssessment()">Submit Assessment</button> -->
-            <div class="form-group">
-                <button type="button" onclick="calculateCategory()">Submit</button>
-            </div>
-            
-            <div id="resultCategory" style="display: none;">
-                <h3>Your Category:</h3>
-                <p id="categoryResult"></p>
-            </div>
-        </form>
+        </div>
     </div>
 
        
@@ -192,6 +203,15 @@
         }
     </script>
 
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
     <script src="script.js"></script>
 </body>
 
