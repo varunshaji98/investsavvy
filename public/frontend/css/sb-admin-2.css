@@ -289,6 +289,14 @@ button::-moz-focus-inner,
   border-style: none;
 }
 
+#bannerimage {
+  width: 100%;
+  background-image: url("../img/graph-banner.jpg");
+  height: 250px;
+  background-color: purple;
+  background-position: center;
+}
+
 input[type="radio"],
 input[type="checkbox"] {
   box-sizing: border-box;
