@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>InvestSavvy - My Watchlist</title>
+    <title>InvestSavvy - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -19,66 +19,6 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.css" rel="stylesheet">
-
-    <style>
-        .watchlist-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-
-        th {
-            background-color: #f2f2f2;
-            color: #333;
-        }
-
-        .search-container {
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .search-input {
-            padding: 8px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            margin-right: 10px;
-        }
-
-        .autocomplete-list {
-            position: absolute;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            max-height: 150px;
-            overflow-y: auto;
-            z-index: 1;
-        }
-
-        .autocomplete-item {
-            padding: 8px;
-            cursor: pointer;
-        }
-
-        .autocomplete-item:hover {
-            background-color: #f2f2f2;
-        }
-    </style>
 
 </head>
 
@@ -401,28 +341,137 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 m-0 font-weight-bold text-primary text-left">My Watchlist</h1>
-                    <div class="search-container">
-                        <input type="text" id="search-input" class="search-input" placeholder="Search for a stock...">
-                        <div id="autocomplete-list" class="autocomplete-list"></div>
-                        <button id="add-btn" class="btn btn-success">Add</button>
+                    <h1 class="h3 m-0 font-weight-bold text-primary mb-4 text-left">Dashboard</h1>
+                    <div class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
+                                                S&P 500 </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">4,800.25 (+2.5%)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Annual) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-s font-weight-bold text-success text-uppercase mb-1">
+                                                Dow Jones Ind.  </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">35,500.75 (+1.8%)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Annual) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-s font-weight-bold text-info mb-1">
+                                                GOLD (per oz.) </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$1,800.50 (+0.5%)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Annual) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
+                                                EUR/USD   </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">1.15 (+0.3%)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="watchlist-container">
-                        <table id="watchlist-table">
-                            <thead>
-                                <tr>
-                                    <th>Symbol</th>
-                                    <th>Last Price</th>               
-                                    <th>% Change</th>
-                                    <th>Volume</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="watchlist-body">
-                                <!-- Table body will be dynamically populated here -->
-                            </tbody>
-                        </table>
+
+                    <div class="row">
+
+                        <div class="col-lg-6">
+
+                            <!-- Basic Card Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary mb-2">Economic Report:</h6>
+                                    <div class="m-0 text-gray-800">Unemployment Rate Falls to Lowest Level in a Decade</div>
+                                </div>
+                                <div class="card-body"> 
+                                    The latest employment report released by the Bureau of Labor Statistics revealed that the unemployment rate dropped to its lowest level in ten years. 
+                                    The economy added a robust 500,000 jobs in the past month, surpassing economists' expectations. 
+                                    The labor market continues to show signs of recovery from the pandemic-induced downturn, with job gains across various sectors. 
+                                    Analysts view this as a positive development for the overall economic outlook.
+                                </div>
+                            </div>
+
+                            <!-- Basic Card Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary mb-2">Stock Market Update:</h6>
+                                    <div class="m-0 text-gray-800">Stocks Rally as Tech Giants Lead Market Surge</div>
+                                </div>
+                                <div class="card-body"> 
+                                    In today's trading session, major stock indices surged, led by gains in technology stocks. 
+                                    Investors cheered strong earnings reports from tech giants such as Apple, Amazon, and Google parent company Alphabet. 
+                                    The Nasdaq Composite reached a new all-time high, while the S&P 500 and Dow Jones Industrial Average also posted significant gains. 
+                                    Market sentiment remains positive amid optimism about economic recovery and corporate earnings.
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6">
+                           
+                            <!-- Basic Card Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary mb-2">Corporate Announcement:</h6>
+                                    <div class="m-0 text-gray-800">Tesla Announces Record Quarterly Revenue</div>
+                                </div>
+                                <div class="card-body"> 
+                                    Electric vehicle manufacturer Tesla reported record-breaking quarterly revenue in its latest earnings release. 
+                                    The company posted revenue of $15 billion, exceeding analysts' estimates and marking a significant increase from the same period last year. 
+                                </div>
+                            </div>
+
+                            <!-- Basic Card Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary mb-2">Market Analysis:</h6>
+                                    <div class="m-0 text-gray-800">Investors Brace for Volatility Amid Inflation Concerns</div>
+                                </div>
+                                <div class="card-body"> 
+                                    Market volatility is on the rise as investors grapple with mounting concerns over inflationary pressures. 
+                                    The latest consumer price index (CPI) data showed a sharper-than-expected increase in inflation, 
+                                    fueling fears of higher interest rates and tighter monetary policy. 
+                                    Rising commodity prices and supply chain disruptions are contributing to inflationary pressures across various sectors. 
+                                    Investors are closely monitoring central bank announcements and economic indicators for clues about future policy actions.
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
+
                 </div>
                 <!-- /.container-fluid -->
 
@@ -469,95 +518,6 @@
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const addButton = document.getElementById('add-btn');
-            const searchInput = document.getElementById('search-input');
-            const watchlistBody = document.getElementById('watchlist-body');
-            const autocompleteList = document.getElementById('autocomplete-list');
-    
-            // Function to fetch autocomplete suggestions
-            const fetchAutocompleteSuggestions = async (inputValue) => {
-                // Implement logic to fetch autocomplete suggestions from an API
-                // For simplicity, I'll use a static array as mock data
-                const mockData = ['NIO', 'MSFT', 'JNJ', 'AAPL', 'GOOGL', 'AMZN', 'TSLA'];
-                return mockData.filter(item => item.toLowerCase().includes(inputValue.toLowerCase()));
-            };
-    
-            // Function to display autocomplete suggestions
-            const showAutocompleteSuggestions = async () => {
-                const inputValue = searchInput.value;
-                autocompleteList.innerHTML = '';
-    
-                const suggestions = await fetchAutocompleteSuggestions(inputValue);
-                suggestions.forEach(suggestion => {
-                    const suggestionElement = document.createElement('div');
-                    suggestionElement.textContent = suggestion;
-                    suggestionElement.className = 'autocomplete-item';
-                    suggestionElement.addEventListener('click', () => {
-                        searchInput.value = suggestion;
-                        autocompleteList.innerHTML = '';
-                    });
-                    autocompleteList.appendChild(suggestionElement);
-                });
-            };
-    
-            // Function to fetch latest data for a stock from the server
-            const fetchLatestData = (symbol) => {
-                const requestOptions = {
-                    method: "GET",
-                    redirect: "follow",
-                };
-                fetch(`http://localhost:3000/ticker/latest-data/${symbol}`, requestOptions)
-                // fetch(`http://localhost:3000/hello`, requestOptions)
-                    .then(response => response.json())
-                    .then(data => {
-                        // Create a new row for the table with the fetched data
-                        const newRow = createRow(symbol, data);
-                        // Append the new row to the table body
-                        watchlistBody.appendChild(newRow);
-                        // Clear the search input
-                        searchInput.value = '';
-                        // Clear the autocomplete suggestions
-                        autocompleteList.innerHTML = '';
-                    })
-                    .catch(error => {
-                        console.error('Error fetching latest data:', error);
-                    });
-            };
-    
-            // Function to create a new row for the table
-            const createRow = (symbol, data) => {
-                const { Date, Close, Volume, PercentageChange } = data;
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${symbol}</td>
-                    <td>${Close}</td>
-                    <td>${PercentageChange}</td>
-                    <td>${Volume}</td>
-                    <td><button class="btn btn-danger">Remove</button></td>
-                `;
-                return row;
-            };
-    
-            // Event listener for the "Add" button
-            addButton.addEventListener('click', () => {
-                const symbol = searchInput.value.toUpperCase();
-                // Call the fetchLatestData function to fetch the latest data and update the table
-                fetchLatestData(symbol);
-            });
-    
-            // Event listener for the search input
-            searchInput.addEventListener('input', showAutocompleteSuggestions);
-    
-            // Event delegation for the "Remove" button
-            watchlistBody.addEventListener('click', (event) => {
-                if (event.target.classList.contains('btn-remove')) {
-                    event.target.closest('tr').remove();
-                }
-            });
-        });
-    </script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
