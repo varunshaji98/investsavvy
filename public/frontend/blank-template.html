@@ -332,162 +332,11 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container py-5">
-                    <!-- Outer Row -->
-                    <div class="row justify-content-center">
-                        <div class="col-xl-10 col-lg-12 col-md-9">
-                            <h1 class="h3 m-0 font-weight-bold text-primary mb-4 text-center">Investment Risk Assessment</h1>
-                            <form id="riskAssessmentForm">
-            
-                                <div class="form-group py-1.5">
-                                    <label for="age"><strong>Age:</strong></label>
-                                    <input class="form-control" type="number" id="age" name="age" required>
-                                </div>
-                                <div class="form-group py-1.5">
-                                    <label for="occupation"><strong>Occupation:</strong></label>
-                                    <select class="form-control" id="occupation" name="occupation" required>
-                                        <option value="" disabled selected>Select an occupation</option>
-                                        <option value="Administrative Assistant">Administrative Assistant</option>
-                                        <option value="Secretary">Secretary</option>
-                                        <option value="Receptionist">Receptionist</option>
-                                        <option value="Office Manager">Office Manager</option>
-                                        <option value="Sales Representative">Sales Representative</option>
-                                        <option value="Customer Service Representative">Customer Service Representative</option>
-                                        <option value="Sales Manager">Sales Manager</option>
-                                        <option value="Retail Salesperson">Retail Salesperson</option>
-                                        <option value="Software Developer">Software Developer</option>
-                                        <option value="Systems Analyst">Systems Analyst</option>
-                                        <option value="IT Manager">IT Manager</option>
-                                        <option value="Network Administrator">Network Administrator</option>
-                                        <option value="Registered Nurse">Registered Nurse</option>
-                                        <option value="Doctor/Physician">Doctor/Physician</option>
-                                        <option value="Medical Assistant">Medical Assistant</option>
-                                        <option value="Pharmacist">Pharmacist</option>
-                                        <option value="Teacher">Teacher</option>
-                                        <option value="Professor">Professor</option>
-                                        <option value="School Principal">School Principal</option>
-                                        <option value="Librarian">Librarian</option>
-                                        <option value="Accountant">Accountant</option>
-                                        <option value="Financial Analyst">Financial Analyst</option>
-                                        <option value="Bank Teller">Bank Teller</option>
-                                        <option value="Financial Advisor">Financial Advisor</option>
-                                        <option value="Factory Worker">Factory Worker</option>
-                                        <option value="Production Supervisor">Production Supervisor</option>
-                                        <option value="Machinist">Machinist</option>
-                                        <option value="Quality Control Inspector">Quality Control Inspector</option>
-                                        <option value="Carpenter">Carpenter</option>
-                                        <option value="Electrician">Electrician</option>
-                                        <option value="Plumber">Plumber</option>
-                                        <option value="Welder">Welder</option>
-                                        <option value="Graphic Designer">Graphic Designer</option>
-                                        <option value="Artist">Artist</option>
-                                        <option value="Photographer">Photographer</option>
-                                        <option value="Writer/Author">Writer/Author</option>
-                                        <option value="Business Owner/Entrepreneur">Business Owner/Entrepreneur</option>
-                                        <option value="Manager">Manager</option>
-                                        <option value="Executive">Executive</option>
-                                        <option value="Operations Manager">Operations Manager</option>
-                                        <option value="Truck Driver">Truck Driver</option>
-                                        <option value="Pilot">Pilot</option>
-                                        <option value="Logistics Coordinator">Logistics Coordinator</option>
-                                        <option value="Warehouse Worker">Warehouse Worker</option>
-                                        <option value="Human Resources Manager">Human Resources Manager</option>
-                                        <option value="HR Specialist">HR Specialist</option>
-                                        <option value="Recruitment Coordinator">Recruitment Coordinator</option>
-                                        <option value="Social Worker">Social Worker</option>
-                                        <option value="Counselor">Counselor</option>
-                                        <option value="Nonprofit Manager">Nonprofit Manager</option>
-                                        <option value="Lawyer/Attorney">Lawyer/Attorney</option>
-                                        <option value="Paralegal">Paralegal</option>
-                                        <option value="Legal Assistant">Legal Assistant</option>
-                                        <option value="Real Estate Agent">Real Estate Agent</option>
-                                        <option value="Property Manager">Property Manager</option>
-                                        <option value="Appraiser">Appraiser</option>
-                                        <!-- Add more options as needed -->
-                                    </select>
-                                </div>
-                                <div class="form-group py-1.5">
-                                    <label for="incomeRange"><strong>Annual Income Range:</strong></label>
-                                    <select class="form-control" id="incomeRange" name="incomeRange" required>
-                                        <option value="" disabled selected style="display:none;">Choose an option</option>
-                                        <option value="<30000">Below $30,000</option>
-                                        <option value="30000-50000">$30,000 - $50,000</option>
-                                        <option value="50001-100000">$50,001 - $100,000</option>
-                                        <option value="100001-150000">$100,001 - $150,000</option>
-                                        <option value=">150000">Above $150,000</option>
-                                    </select>
-                                </div>
-            
-                                <div class="form-group py-1.5">
-                                    <label for="investmentExperience"><strong>Investment Experience:</strong></label>
-                                    <div class="radio-group custom-control mr-auto">
-                                        <label class="mr-4"><input type="radio" name="investmentExperience" value="yes" onclick="showExperienceDetails()"> Yes</label>
-                                        <label class="mr-4"><input type="radio" name="investmentExperience" value="no" onclick="hideExperienceDetails()"> No</label>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group py-1.5">
-                                    <label for="investmentGoals"><strong>Investment Goals:</strong></label>
-                                    <div class="custom-control radio-group mr-auto">
-                                        <label class="mr-4"><input type="radio" name="investmentGoals" value="Capital Preservation"> Capital preservation</label>
-                                        <label class="mr-4"><input type="radio" name="investmentGoals" value="Income Generation"> Income generation</label>
-                                        <label class="mr-4"><input type="radio" name="investmentGoals" value="Wealth Accumulation"> Wealth accumulation</label>
-                                        <label class="mr-4"><input type="radio" name="investmentGoals" value="Speculative Gains"> Speculative gains</label>
-                                    </div>
-                                </div>
-            
-                                <div class="form-group py-1.5">
-                                    <label for="riskTolerance"><strong>Risk Tolerance:</strong></label>
-                                    <select class="form-control" id="riskTolerance" name="riskTolerance" required>
-                                        <option value="" disabled selected style="display:none;">Choose an option</option>
-                                        <option value="veryConservative">Very conservative: The individual prefers low-risk, stable returns.</option>
-                                        <option value="conservative">Conservative: Willing to accept some risk for moderate returns.</option>
-                                        <option value="moderate">Moderate: Balanced approach between risk and returns.</option>
-                                        <option value="aggressive">Aggressive: Seeks higher returns, willing to take higher risks.</option>
-                                        <option value="veryAggressive">Very aggressive: Pursues maximum returns, comfortable with significant risks.</option>
-                                    </select>
-                                </div>
-            
-                                <div class="form-group py-1.5">
-                                    <label for="timeHorizon"><strong>Time Horizon:</strong></label>
-                                    <select class="form-control" id="timeHorizon" name="timeHorizon" required>
-                                        <option value="" disabled selected style="display:none;">Choose an option</option>
-                                        <option value="Short Term">Short-term (less than 1 year)</option>
-                                        <option value="Medium Term">Medium-term (1-5 years)</option>
-                                        <option value="Long Term">Long-term (5 years or more)</option>
-                                    </select>
-                                </div>
-            
-                                <div class="form-group py-1.5">
-                                    <label for="knowledgeInterest"><strong>Knowledge and Interest:</strong></label>
-                                    <select class="form-control" id="knowledgeInterest" name="knowledgeInterest" required>
-                                        <option value="" disabled selected style="display:none;">Choose an option</option>
-                                        <option value="novice">Novice (limited knowledge)</option>
-                                        <option value="intermediate">Intermediate (basic understanding)</option>
-                                        <option value="advanced">Advanced (experienced and knowledgeable)</option>
-                                    </select>
-                                </div>
-            
-                                <!-- <button type="button" onclick="submitAssessment()">Submit Assessment</button> -->
-                                <div class="form-group py-3">
-                                    <button class="btn btn-primary" type="button" onclick="calculateCategory()">Submit</button>
-                                </div>
-                                
-                                <!-- Basic Card Example -->
-                                <div class="card shadow mb-4" id="resultCategory" style="display: none;">
-                                    <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary" id="categoryResult"></h6>
-                                    </div>
-                                    <div class="card-body" id="categoryResultInfo"></div>
-                                </div>
+                <div class="container-fluid">
 
-                                <!-- <div  >
-                                    <h3 class="h4 font-weight-bold text-primary mr-4">Your Category:</h3>
-                                    <p ></p>
-                                </div> -->
-                            </form>
-                        </div>
-                    </div>
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+
                 </div>
                 <!-- /.container-fluid -->
 
@@ -535,47 +384,6 @@
         </div>
     </div>
 
-    <script>
-        function showExperienceDetails() {
-            document.getElementById('experienceDetailsGroup').style.display = 'block';
-        }
-    
-        function hideExperienceDetails() {
-            document.getElementById('experienceDetailsGroup').style.display = 'none';
-        }
-
-        function calculateCategory() {
-
-        const riskTolerance = document.getElementById('riskTolerance').value;
-
-        // Perform a simple calculation (customize based on your criteria)
-        let category = '';
-        let categoryInfo = '';
-
-        if (riskTolerance === 'veryConservative'){
-            category = 'Conservative';
-            categoryInfo = 'Based on your responses to our Investment Risk Profile Survey, your risk tolerance is determined to be conservative. For your investment strategy, we suggest focusing on capital preservation. Consider allocating your portfolio to low-risk investments such as high-quality bonds, dividend-paying stocks, and conservative mutual funds. These recommendations prioritize the protection of your principal investment while still offering potential for modest returns.';
-        } else if (riskTolerance === 'conservative'){
-            category = 'Moderate';
-            categoryInfo = 'Based on your responses to our Investment Risk Profile Survey, your risk tolerance is determined to be moderate. For your investment strategy, we suggest a balanced approach that seeks to balance risk and return potential. Consider diversifying your portfolio across a mix of stocks, bonds, and mutual funds. This approach aims to provide steady returns while still offering some growth potential and protection against market fluctuations.';
-        } else if (riskTolerance === 'moderate'){
-            category = 'Balanced';
-            categoryInfo = 'Based on your responses to our Investment Risk Profile Survey, your risk tolerance is determined to be balanced. For your investment strategy, we suggest maintaining a diversified portfolio that balances risk and return potential. Consider allocating your investments across various asset classes, including stocks, bonds, real estate, and alternative investments. This approach aims to provide stability, growth, and income potential over the long term.';
-        } else if (riskTolerance === 'aggressive'){
-            category = 'Aggressive'
-            categoryInfo = 'Based on your responses to our Investment Risk Profile Survey, your risk tolerance is determined to be aggressive. For your investment strategy, we suggest a growth-oriented approach that prioritizes capital appreciation. Consider investing in high-growth stocks, emerging markets, and alternative investments such as venture capital or cryptocurrency. This approach aims to maximize returns over the long term but comes with higher volatility and risk.';
-        } else if (riskTolerance === 'veryAggressive'){
-            category = 'Very Aggressive'
-            categoryInfo = 'Based on your responses to our Investment Risk Profile Survey, your risk tolerance is determined to be very aggressive. For your investment strategy, we suggest a speculative approach that seeks high-risk, high-reward opportunities. Consider allocating a significant portion of your portfolio to high-risk assets such as speculative stocks, leveraged products, and early-stage startups. This approach aims to generate substantial returns but carries a high level of volatility and potential loss.';
-        }
-
-        // Display the result
-        document.getElementById('categoryResult').innerText = category;
-        document.getElementById('categoryResultInfo').innerText = categoryInfo;
-        document.getElementById('resultCategory').style.display = 'block';
-        }
-    </script>
-    
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -585,6 +393,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
 </body>
 
 </html>
