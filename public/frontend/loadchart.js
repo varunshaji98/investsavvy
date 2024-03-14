@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const mysql = require("mysql")
-require("dotenv").config()
+const mysql = require("mysql");
+require("dotenv").config();
 
-parameters = {
+const parameters = {
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     user: process.env.DB_USER,
@@ -13,19 +13,8 @@ parameters = {
     multipleStatements: true,
 };
 
-// Step 2: establish a connection to the database
-// now we use the methods available from the mysql module
-// first invoke the mysql module’s .createConnection method
+// Establish a connection to the database
 const mysqlConnection = mysql.createConnection(parameters);
-// now invoke the .connect method
-mysqlConnection.connect((error) => {
-    if (error) {
-        console.log(error);
-    } else {
-    // if successful, write a message to the console
-        console.log("Connected to MySQL");
-    }
-});
 
 // Handle MySQL query to fetch historical stock data
 const getHistoricalData = (symbol, callback) => {
