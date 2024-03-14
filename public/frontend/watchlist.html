@@ -114,10 +114,8 @@
                 <thead>
                     <tr>
                         <th>Symbol</th>
-                        <th>Last Price</th>
-                        <th>Change</th>
+                        <th>Last Price</th>               
                         <th>% Change</th>
-                        <th>Market Cap</th>
                         <th>Volume</th>
                         <th>Actions</th>
                     </tr>
@@ -135,62 +133,81 @@
     </main>
 
     <script>
-        // Function to fetch autocomplete suggestions
-        const fetchAutocompleteSuggestions = async (inputValue) => {
-            // Implement logic to fetch autocomplete suggestions from an API
-            // For simplicity, I'll use a static array as mock data
-            const mockData = ['NIO', 'MSFT', 'JNJ', 'AAPL', 'GOOGL', 'AMZN', 'TSLA'];
-            return mockData.filter(item => item.toLowerCase().includes(inputValue.toLowerCase()));
-        };
-
-        // Function to display autocomplete suggestions
-        const showAutocompleteSuggestions = async () => {
-            const inputValue = document.getElementById('search-input').value;
-            const autocompleteList = document.getElementById('autocomplete-list');
-            autocompleteList.innerHTML = '';
-
-            const suggestions = await fetchAutocompleteSuggestions(inputValue);
-            suggestions.forEach(suggestion => {
-                const suggestionElement = document.createElement('div');
-                suggestionElement.textContent = suggestion;
-                suggestionElement.className = 'autocomplete-item';
-                suggestionElement.addEventListener('click', () => {
-                    document.getElementById('search-input').value = suggestion;
-                    autocompleteList.innerHTML = '';
-                });
-                autocompleteList.appendChild(suggestionElement);
-            });
-        };
-
         document.addEventListener('DOMContentLoaded', () => {
             const addButton = document.getElementById('add-btn');
             const searchInput = document.getElementById('search-input');
             const watchlistBody = document.getElementById('watchlist-body');
-
+            const autocompleteList = document.getElementById('autocomplete-list');
+    
+            // Function to fetch autocomplete suggestions
+            const fetchAutocompleteSuggestions = async (inputValue) => {
+                // Implement logic to fetch autocomplete suggestions from an API
+                // For simplicity, I'll use a static array as mock data
+                const mockData = ['NIO', 'MSFT', 'JNJ', 'AAPL', 'GOOGL', 'AMZN', 'TSLA'];
+                return mockData.filter(item => item.toLowerCase().includes(inputValue.toLowerCase()));
+            };
+    
+            // Function to display autocomplete suggestions
+            const showAutocompleteSuggestions = async () => {
+                const inputValue = searchInput.value;
+                autocompleteList.innerHTML = '';
+    
+                const suggestions = await fetchAutocompleteSuggestions(inputValue);
+                suggestions.forEach(suggestion => {
+                    const suggestionElement = document.createElement('div');
+                    suggestionElement.textContent = suggestion;
+                    suggestionElement.className = 'autocomplete-item';
+                    suggestionElement.addEventListener('click', () => {
+                        searchInput.value = suggestion;
+                        autocompleteList.innerHTML = '';
+                    });
+                    autocompleteList.appendChild(suggestionElement);
+                });
+            };
+    
+            // Function to fetch latest data for a stock from the server
+            const fetchLatestData = (symbol) => {
+                fetch(`/latest-data/${symbol}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Create a new row for the table with the fetched data
+                        const newRow = createRow(symbol, data);
+                        // Append the new row to the table body
+                        watchlistBody.appendChild(newRow);
+                        // Clear the search input
+                        searchInput.value = '';
+                        // Clear the autocomplete suggestions
+                        autocompleteList.innerHTML = '';
+                    })
+                    .catch(error => {
+                        console.error('Error fetching latest data:', error);
+                    });
+            };
+    
+            // Function to create a new row for the table
+            const createRow = (symbol, data) => {
+                const { Date, Close, Volume, PercentageChange } = data;
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${symbol}</td>
+                    <td>${Close}</td>
+                    <td>${PercentageChange}</td>
+                    <td>${Volume}</td>
+                    <td><button class="btn btn-remove">Remove</button></td>
+                `;
+                return row;
+            };
+    
             // Event listener for the "Add" button
             addButton.addEventListener('click', () => {
                 const symbol = searchInput.value.toUpperCase();
-                if (symbol.trim() !== '') {
-                    const row = `
-                        <tr>
-                            <td>${symbol}</td>
-                            <td>--</td>
-                            <td>--</td>
-                            <td>--</td>
-                            <td>--</td>
-                            <td>--</td>
-                            <td><button class="btn btn-remove">Remove</button></td>
-                        </tr>
-                    `;
-                    watchlistBody.insertAdjacentHTML('beforeend', row);
-                    console.log('Added to watchlist:', symbol);
-                    searchInput.value = ''; // Clear the search input
-                }
+                // Call the fetchLatestData function to fetch the latest data and update the table
+                fetchLatestData(symbol);
             });
-
+    
             // Event listener for the search input
             searchInput.addEventListener('input', showAutocompleteSuggestions);
-
+    
             // Event delegation for the "Remove" button
             watchlistBody.addEventListener('click', (event) => {
                 if (event.target.classList.contains('btn-remove')) {
