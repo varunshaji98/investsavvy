@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Close/Last Line Graphs</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+    <div id="nioChart"></div>
+    <div id="msftChart"></div>
+    <div id="jnjChart"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Function to fetch data and create a line graph
+            const createLineGraph = (symbol, containerId) => {
+                fetch(`/data/${symbol}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const closeValues = data.closeValues;
+                        const dates = data.dates.map(dateStr => new Date(dateStr)); // Convert SQL date strings to JavaScript Date objects
+
+                        const layout = {
+                            title: `${symbol} - Close/Last Line Graph`,
+                            xaxis: { title: 'Date' }, // Set x-axis title
+                            yaxis: { title: 'Closing Value ($)' }
+                        };
+
+                        const trace = {
+                            x: dates,
+                            y: closeValues,
+                            type: 'line'
+                        };
+
+                        Plotly.newPlot(containerId, [trace], layout);
+                })
+                .catch(error => console.error(`Error fetching data for ${symbol}:`, error));
+            };
+
+            // Create line graphs for each symbol
+            createLineGraph('NIO', 'nioChart');
+            createLineGraph('MSFT', 'msftChart');
+            createLineGraph('JNJ', 'jnjChart');
+        });
+    </script>
+</body>
+
+</html>

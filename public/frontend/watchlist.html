@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watchlist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .watchlist-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .search-input {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+        }
+
+        .autocomplete-list {
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-height: 150px;
+            overflow-y: auto;
+            z-index: 1;
+        }
+
+        .autocomplete-item {
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        .autocomplete-item:hover {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            cursor: pointer;
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Watchlist</h1>
+    </header>
+
+    <main>
+        <div class="watchlist-container">
+            <h2>My Watchlist</h2>
+            <table id="watchlist-table">
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Last Price</th>
+                        <th>Change</th>
+                        <th>% Change</th>
+                        <th>Market Cap</th>
+                        <th>Volume</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="watchlist-body">
+                    <!-- Table body will be dynamically populated here -->
+                </tbody>
+            </table>
+            <div class="search-container">
+                <input type="text" id="search-input" class="search-input" placeholder="Search for a stock...">
+                <div id="autocomplete-list" class="autocomplete-list"></div>
+                <button id="add-btn" class="btn">Add</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Function to fetch autocomplete suggestions
+        const fetchAutocompleteSuggestions = async (inputValue) => {
+            // Implement logic to fetch autocomplete suggestions from an API
+            // For simplicity, I'll use a static array as mock data
+            const mockData = ['NIO', 'MSFT', 'JNJ', 'AAPL', 'GOOGL', 'AMZN', 'TSLA'];
+            return mockData.filter(item => item.toLowerCase().includes(inputValue.toLowerCase()));
+        };
+
+        // Function to display autocomplete suggestions
+        const showAutocompleteSuggestions = async () => {
+            const inputValue = document.getElementById('search-input').value;
+            const autocompleteList = document.getElementById('autocomplete-list');
+            autocompleteList.innerHTML = '';
+
+            const suggestions = await fetchAutocompleteSuggestions(inputValue);
+            suggestions.forEach(suggestion => {
+                const suggestionElement = document.createElement('div');
+                suggestionElement.textContent = suggestion;
+                suggestionElement.className = 'autocomplete-item';
+                suggestionElement.addEventListener('click', () => {
+                    document.getElementById('search-input').value = suggestion;
+                    autocompleteList.innerHTML = '';
+                });
+                autocompleteList.appendChild(suggestionElement);
+            });
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const addButton = document.getElementById('add-btn');
+            const searchInput = document.getElementById('search-input');
+            const watchlistBody = document.getElementById('watchlist-body');
+
+            // Event listener for the "Add" button
+            addButton.addEventListener('click', () => {
+                const symbol = searchInput.value.toUpperCase();
+                if (symbol.trim() !== '') {
+                    const row = `
+                        <tr>
+                            <td>${symbol}</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td><button class="btn btn-remove">Remove</button></td>
+                        </tr>
+                    `;
+                    watchlistBody.insertAdjacentHTML('beforeend', row);
+                    console.log('Added to watchlist:', symbol);
+                    searchInput.value = ''; // Clear the search input
+                }
+            });
+
+            // Event listener for the search input
+            searchInput.addEventListener('input', showAutocompleteSuggestions);
+
+            // Event delegation for the "Remove" button
+            watchlistBody.addEventListener('click', (event) => {
+                if (event.target.classList.contains('btn-remove')) {
+                    event.target.closest('tr').remove();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
