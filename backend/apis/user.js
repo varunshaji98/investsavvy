@@ -53,6 +53,23 @@ router.get("/user/by_uid", (request, response) => {
     });
 });
 
+// GET /user/by_uid
+// Description : Get user info by user_id
+router.get("/user/riskprofile", (request, response) => {
+    db.connection.query(`SELECT risk_profile_id FROM Users WHERE id = ${request.query.id}`, (errors, results) => {
+        if (errors) {
+            console.log(errors);
+            response.status(500).send("Internal Server Error");
+        } else {
+            if (utils.isEmptyObject(results))
+                response.status(404).send("No records found");
+            else
+                response.status(200).send(results);
+        }
+    });
+});
+
+
 // POST /user/register
 // Description : Register a new user
 router.post("/user/register", (request, response) => {
