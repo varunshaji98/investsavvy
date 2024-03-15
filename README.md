@@ -2,7 +2,10 @@
 
 ## Project Website
 
-Project website deployed at (https://investsavvy.onrender.com/).
+Project website deployed at https://investsavvy.onrender.com/
+
+Backend Server deployed at https://investsavvy-backend.onrender.com/
+Use this link to make API calls 
 
 ## Project Description
 
