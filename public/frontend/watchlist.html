@@ -508,7 +508,7 @@
                     method: "GET",
                     redirect: "follow",
                 };
-                fetch(`http://localhost:3000/ticker/latest-data/${symbol}`, requestOptions)
+                fetch(`https://investsavvy-backend.onrender.com/ticker/latest-data/${symbol}`, requestOptions)
                 // fetch(`http://localhost:3000/hello`, requestOptions)
                     .then(response => response.json())
                     .then(data => {

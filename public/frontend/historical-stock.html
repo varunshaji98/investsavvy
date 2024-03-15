@@ -396,7 +396,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Function to fetch data and create a line graph
             const createLineGraph = (symbol, containerId) => {
-                fetch(`http://localhost:3000/ticker/historical-data/${symbol}`)
+                fetch(`https://investsavvy-backend.onrender.com/ticker/historical-data/${symbol}`)
                     .then(response => response.json())
                     .then(data => {
                         const closeValues = data.closeValues;
