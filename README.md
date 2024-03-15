@@ -1,8 +1,5 @@
 # COM-FT-DEV2_MAR2024_T03
 
-Members
-
-
 ## Project Website
 
 Project website deployed at (https://investsavvy.onrender.com/).
