@@ -53,7 +53,7 @@ router.get("/user/by_uid", (request, response) => {
     });
 });
 
-// GET /user/by_uid
+// GET /user/riskprofile
 // Description : Get user info by user_id
 router.get("/user/riskprofile", (request, response) => {
     db.connection.query(`SELECT risk_profile_id FROM Users WHERE id = ${request.query.id}`, (errors, results) => {
