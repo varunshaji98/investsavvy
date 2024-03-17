@@ -1,21 +1,18 @@
-# COM-FT-DEV2_MAR2024_T03
-
 ## Project Website
 
-Project website deployed at https://investsavvy.onrender.com/
+Demo the project website at https://investsavvy.onrender.com/
 
-Backend Server deployed at https://investsavvy-backend.onrender.com/
-Use this link to make API calls 
+### Deployment
+Frontend and Backend - [Render](https://render.com/)  
+Database - [Aiven for MySQL](https://aiven.io/docs/products/mysql/overview)
+
+### Screenshots
 
 ## Project Description
 
-This repository contains the code for the COM-FT-DEV2_MAR2024_T03 project.
+### Features Implemented
 
-## Team Members
-
-- Wang Jiayi
-- Varun Shaji
-- Yuning Chen
+### Features To-Do
 
 ## Directory Structure
 
