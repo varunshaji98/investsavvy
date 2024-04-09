@@ -1,0 +1,486 @@
+openapi: 3.0.0
+info:
+  title: InvestSavvy Backend API
+  description: API for managing survey data, users, ticker information, and watchlists
+  version: 1.0.0
+
+servers:
+  - url: https://investsavvy-backend.onrender.com
+  
+paths:
+  # User endpoints
+  /user/register:
+    post:
+      summary: Register a new user
+      description: Registers a new user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+      responses:
+        '200':
+          description: User registered successfully
+  /user/login:
+    post:
+      summary: Login a user
+      description: Logs in a user by validating email and password.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password_hash:
+                  type: string
+              required:
+                - email
+                - password_hash
+      responses:
+        '200':
+          description: Successful login
+        '404':
+          description: Login failure
+  /user/all:
+    get:
+      summary: Get a list of users
+      description: Returns a list of all users.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+  /user/by_uid:
+    get:
+      summary: Get user info by user_id
+      description: Returns user information based on user_id.
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: ID of the user to retrieve
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    patch:
+      summary: Modify the user password hash
+      description: Modifies the user password hash based on user_id.
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: ID of the user to update password hash
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password_hash:
+                  type: string
+              required:
+                - password_hash
+      responses:
+        '200':
+          description: Password updated
+  /user/riskprofile:
+    get:
+      summary: Get user risk profile by user_id
+      description: Returns user risk profile based on user_id.
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: ID of the user to retrieve risk profile
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  risk_profile_id:
+                    type: integer
+
+  # Survey endpoints
+  /survey/add:
+    post:
+      summary: Record a survey answer for a specific user
+      description: Records a survey answer for a specific user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SurveyResultInput'
+      responses:
+        '200':
+          description: Survey results added
+  /survey/all:
+    get:
+      summary: Get survey answers of all users
+      description: Returns survey answers of all users.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SurveyResult'
+  /survey/by_user:
+    get:
+      summary: Get survey answer of a specific user
+      description: Returns survey answer of a specific user.
+      parameters:
+        - name: user_id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: ID of the user to retrieve survey answer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SurveyResult'
+
+  # Ticker endpoints
+  /ticker/all:
+    get:
+      summary: Get a list of all tickers
+      description: Returns a list of all tickers.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ticker'
+  /ticker/by_riskprofile:
+    get:
+      summary: Get a list of tickers by risk profile
+      description: Returns a list of tickers based on risk profile.
+      parameters:
+        - name: rpid
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: ID of the risk profile to retrieve tickers
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ticker'
+  /ticker/by_type:
+    get:
+      summary: Get a list of tickers by type
+      description: Returns a list of tickers based on type.
+      parameters:
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Type of the tickers to retrieve
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ticker'
+  /ticker/by_symbol:
+    get:
+      summary: Find a ticker by symbol
+      description: Returns ticker information based on symbol.
+      parameters:
+        - name: symbol
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Symbol of the ticker to retrieve
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ticker'
+  /ticker/historical-data/{symbol}:
+    get:
+      summary: Get historical data for a ticker
+      description: Returns historical data for a ticker symbol.
+      parameters:
+        - name: symbol
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Symbol of the ticker to retrieve historical data for
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  closeValues:
+                    type: array
+                    items:
+                      type: number
+  /ticker/latest-data/{symbol}:
+    get:
+      summary: Get latest data for a ticker
+      description: Returns latest data for a ticker symbol.
+      parameters:
+        - name: symbol
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Symbol of the ticker to retrieve latest data for
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Date:
+                    type: string
+                    format: date-time
+                  Close:
+                    type: number
+                  Volume:
+                    type: integer
+                  PercentageChange:
+                    type: number
+  
+  # Watchlist endpoints
+  /watchlist/by_user:
+    get:
+      summary: Get watchlist of a user
+      description: Returns the watchlist (list of tickers) of a user.
+      parameters:
+        - name: user_id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: ID of the user to retrieve watchlist
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ticker'
+  /watchlist/add_to_user:
+    post:
+      summary: Add to watchlist of a user
+      description: Adds to the watchlist of a user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                ticker_id:
+                  type: integer
+              required:
+                - user_id
+                - ticker_id
+      responses:
+        '200':
+          description: Added to watchlist
+  /watchlist:
+    delete:
+      summary: Delete a watchlist entry
+      description: Deletes a specific watchlist entry.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                ticker_id:
+                  type: integer
+              required:
+                - user_id
+                - ticker_id
+      responses:
+        '200':
+          description: Deleted from watchlist
+
+components:
+  schemas:
+    SurveyResult:
+      type: object
+      properties:
+        user_id:
+          type: integer
+        age:
+          type: integer
+        occupation:
+          type: string
+        income:
+          type: string
+        risk_tolerance:
+          type: string
+        investment_experience:
+          type: string
+        time_horizon:
+          type: string
+        investment_goal:
+          type: string
+        investment_knowledge:
+          type: string
+      required:
+        - user_id
+        - age
+        - occupation
+        - income
+        - risk_tolerance
+        - investment_experience
+        - time_horizon
+        - investment_goal
+        - investment_knowledge
+
+    SurveyResultInput:
+      type: object
+      properties:
+        user_id:
+          type: integer
+        age:
+          type: integer
+        occupation:
+          type: string
+        income:
+          type: string
+        risk_tolerance:
+          type: string
+        investment_experience:
+          type: string
+        time_horizon:
+          type: string
+        investment_goal:
+          type: string
+        investment_knowledge:
+          type: string
+      required:
+        - user_id
+        - age
+        - occupation
+        - income
+        - risk_tolerance
+        - investment_experience
+        - time_horizon
+        - investment_goal
+        - investment_knowledge
+
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        password_hash:
+          type: string
+        user_type:
+          type: string
+      required:
+        - first_name
+        - last_name
+        - email
+        - password_hash
+        - user_type
+
+    UserInput:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        password_hash:
+          type: string
+        user_type:
+          type: string
+      required:
+        - first_name
+        - last_name
+        - email
+        - password_hash
+        - user_type
+
+    Ticker:
+      type: object
+      properties:
+        id:
+          type: integer
+        symbol:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        risk_profile_id:
+          type: integer
+      required:
+        - symbol
+        - name
+        - type
+        - risk_profile_id
+

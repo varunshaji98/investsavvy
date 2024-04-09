@@ -1,4 +1,17 @@
-## Project Website
+<!-- TOC start -->
+- [Project Description](#project-description)
+  - [Project Website](#project-website)
+  - [Deployment](#deployment)
+  - [Website Pages](#website-pages)
+  - [Features Implemented](#features-implemented)
+  - [Features To-Do](#features-to-do)
+- [Directory Structure](#directory-structure)
+- [Documentation To-Do](#documentation-to-do)
+<!-- TOC end -->
+
+## Project Description
+
+### Project Website
 
 Demo the project website at https://investsavvy.onrender.com/
 
@@ -23,8 +36,6 @@ Database - [Aiven for MySQL](https://aiven.io/docs/products/mysql/overview)
 
 **Watchlist** - Page where user can create their own watchlist selection  
 ![Watchlist](public/frontend/img/InvestSavvy-Watchlist.png)
-
-## Project Description
 
 ### Features Implemented
 
