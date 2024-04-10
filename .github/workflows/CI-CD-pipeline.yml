@@ -63,6 +63,7 @@ jobs:
           -e DB_PASS=${{ secrets.DB_PASS }} \
           -e DB_NAME=${{ secrets.DB_NAME }} \
           -d ghcr.io/varunshaji98/investsavvy:latest
+        docker ps
     - name: Login to Postman CLI
       run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
     - name: Run API tests
