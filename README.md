@@ -1,10 +1,14 @@
 <!-- TOC start -->
 - [Project Description](#project-description)
   - [Project Website](#project-website)
-  - [Deployment](#deployment)
+  - [External Applications Used](#external-applications-used)
   - [Website Pages](#website-pages)
   - [Features Implemented](#features-implemented)
   - [Features To-Do](#features-to-do)
+- [CI/CD WorkFlow](#cicd-workflow)
+  - [Docker Containerization](#docker-containerization)
+  - [API Unit Testing](#api-unit-testing)
+  - [Deploying Backend to Production](#deploying-backend-to-production)
 - [Directory Structure](#directory-structure)
 - [Documentation To-Do](#documentation-to-do)
 <!-- TOC end -->
@@ -15,9 +19,10 @@
 
 Demo the project website at https://investsavvy.onrender.com/
 
-### Deployment
-Frontend and Backend - [Render](https://render.com/)  
-Database - [Aiven for MySQL](https://aiven.io/docs/products/mysql/overview)
+### External Applications Used
+
+Frontend website and Backend server deployed using [Render](https://render.com/)  
+Database hosted at [Aiven for MySQL](https://aiven.io/docs/products/mysql/overview)
 
 ### Website Pages
 **Landing Page** -  Main site to highlight the purpose and functionality of the website  
@@ -42,7 +47,27 @@ Database - [Aiven for MySQL](https://aiven.io/docs/products/mysql/overview)
 ### Features To-Do
 - External Financial API
 - Auth0
-  
+
+## CI/CD WorkFlow
+
+Insert pipeline image and explanation - GitHub Actions
+
+### Docker Containerization
+
+Build Docker container  
+Do Sanity Test  
+Pushish to GitHub Container Registry - insert link
+
+### API Unit Testing
+
+Pull Docker Image from GHCR and run  
+Postman Collection and Test Environment  
+Postman Commandline Integration (CLI)  
+
+### Deploying Backend to Production
+
+Deploy using Render WebHook
+
 ## Directory Structure
 
 - **/public/frontend**: Contains the source code for the website
