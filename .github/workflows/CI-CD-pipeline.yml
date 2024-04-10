@@ -1,0 +1,35 @@
+name: CI/CD Workflow
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout 
+      uses: actions/checkout@v3
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.PROJECT_GITHUB_TOKEN }}
+    - name: Build the Docker image
+      run: |
+        export dockerimg_name=investsavvy-$(date +%s)
+        docker build . --file backend/Dockerfile --tag ghcr.io/varunshaji98/$dockerimg_name
+    - name: Do a quick sanity test on the docker image
+      run: docker run -p 3000:3000 -d \
+        -e DB_HOST=${{ secrets.DB_HOST }} \
+        -e DB_PORT=${{ secrets.DB_PORT }} \
+        -e DB_USER=${{ secrets.DB_USER }} \
+        -e DB_PASS=${{ secrets.DB_PASS }} \
+        -e DB_NAME=${{ secrets.DB_NAME }} \
+        ghcr.io/varunshaji98/dockerimg_name
+    - name: Push to Github Container Registry
+      run: docker push ghcr.io/varunshaji98/$dockerimg_name
