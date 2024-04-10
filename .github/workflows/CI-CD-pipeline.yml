@@ -21,8 +21,8 @@ jobs:
         password: ${{ secrets.PROJECT_GITHUB_TOKEN }}
     - name: Build the Docker image
       run: |
-        export dockerimg_name=investsavvy-$(date +%s)
-        docker build . --file backend/Dockerfile --tag ghcr.io/varunshaji98/$dockerimg_name
+        export dockerimg_name=ghcr.io/varunshaji98/investsavvy-$(date +%s)
+        docker build . --file backend/Dockerfile --tag $dockerimg_name
     - name: Do a quick sanity test on the docker image
       run: |
         docker run -p 3000:3000 -d \
@@ -31,6 +31,6 @@ jobs:
           -e DB_USER=${{ secrets.DB_USER }} \
           -e DB_PASS=${{ secrets.DB_PASS }} \
           -e DB_NAME=${{ secrets.DB_NAME }} \
-        ghcr.io/varunshaji98/$dockerimg_name
+          $dockerimg_name
     - name: Push to Github Container Registry
       run: docker push ghcr.io/varunshaji98/$dockerimg_name
