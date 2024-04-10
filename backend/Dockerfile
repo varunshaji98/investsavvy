@@ -1,12 +1,11 @@
-FROM ubuntu:18.04
+FROM node:10-alpine
 MAINTAINER "varunshaji@hotmail.com"
-EXPOSE 3000
-ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ=Asia/Singapore
 
-WORKDIR /app
-COPY . .
-RUN apt-get update
-RUN apt-get install -y nodejs npm
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+WORKDIR /home/node/app
+COPY package*.json ./
+USER node
 RUN npm install
-CMD ["node","main.js"]
+COPY --chown=node:node . .
+EXPOSE 3000
+CMD [ "node", "main.js" ]
