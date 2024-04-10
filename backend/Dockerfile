@@ -9,4 +9,5 @@ USER node
 RUN npm install
 COPY --chown=node:node . .
 EXPOSE 3000
+RUN ls
 CMD [ "node", "main.js" ]

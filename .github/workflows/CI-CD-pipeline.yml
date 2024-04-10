@@ -20,6 +20,7 @@ jobs:
         username: ${{ github.repository_owner }}
         password: ${{ secrets.PROJECT_GITHUB_TOKEN }}
     - name: Build the Docker image
+    
       run: |
         docker build . --file backend/Dockerfile \
           --tag ghcr.io/varunshaji98/investsavvy:$(date +%s) \
