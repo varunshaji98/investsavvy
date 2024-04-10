@@ -90,6 +90,6 @@ jobs:
     steps:
     - uses: actions/delete-package-versions@v5
       with:
-        package-name: 'ghcr.io/varunshaji98/investsavvy'
+        package-name: 'investsavvy'
         package-type: 'container'
         min-versions-to-keep: 3
