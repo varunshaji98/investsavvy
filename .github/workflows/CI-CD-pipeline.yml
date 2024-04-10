@@ -8,7 +8,7 @@ on:
 
 jobs:
 
-  docker-build:
+  docker-build-push:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout 
@@ -39,7 +39,7 @@ jobs:
         docker push -a ghcr.io/varunshaji98/investsavvy
 
   automated-api-tests:
-    needs: docker-build
+    needs: docker-build-push
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -55,8 +55,6 @@ jobs:
     - name: Install Postman CLI
       run: |
         curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
-    - name: Login to Postman CLI
-      run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
     - name: Run the docker container
       run: |
         docker run -p 3000:3000 \
@@ -67,9 +65,20 @@ jobs:
           -e DB_NAME=${{ secrets.DB_NAME }} \
           -d ghcr.io/varunshaji98/investsavvy
         sleep 5
+    - name: Login to Postman CLI
+      run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
     - name: Run API tests
       run: |
-        docker images
         docker ps
         postman collection run "33397024-6c70459c-802f-464e-8160-f7053090d68a" \
           -e "33397024-1dbd4062-670f-4bde-b475-04a9a4eb831e"
+        
+  deploy-backend:
+    needs: [docker-build-push, automated-api-tests]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy
+      env:
+        deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+      run: |
+        curl "$deploy_url"
