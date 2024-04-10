@@ -19,10 +19,15 @@ jobs:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
         password: ${{ secrets.PROJECT_GITHUB_TOKEN }}
-    - name: Build the Docker image, do a quick sanity test and push to GitHub Container Registry
+    - name: Build the Docker image
       run: |
         export dockerimg_name=ghcr.io/varunshaji98/investsavvy:$(date +%s)
+        echo $dockerimg_name > /tmp/dockerimg_name 
         docker build . --file backend/Dockerfile --tag $dockerimg_name
+    - name: Do a quick sanity test on the docker image
+      run: |
+        docker images
+        export dockerimg_name=`cat /tmp/dockerimg_name`
         docker run -p 3000:3000 \
           -e DB_HOST=${{ secrets.DB_HOST }} \
           -e DB_PORT=${{ secrets.DB_PORT }} \
@@ -30,4 +35,8 @@ jobs:
           -e DB_PASS=${{ secrets.DB_PASS }} \
           -e DB_NAME=${{ secrets.DB_NAME }} \
           -d $dockerimg_name
+    - name: Push to Github Container Registry
+      run: |
+        docker ps
+        export dockerimg_name=`cat /tmp/dockerimg_name`
         docker push $dockerimg_name
