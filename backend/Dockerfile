@@ -4,9 +4,10 @@ LABEL org.opencontainers.image.source https://github.com/varunshaji98/investsavv
 
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 WORKDIR /home/node/app
-COPY package*.json ./
+COPY package*.json .
+RUN ls
 USER node
-RUN npm install
+RUN npm install cors dotenv express express-openid-connect mysql
 COPY --chown=node:node . .
 EXPOSE 3000
 RUN ls
