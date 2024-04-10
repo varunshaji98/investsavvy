@@ -54,7 +54,7 @@ jobs:
     - name: Install Postman CLI
       run: |
         curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
-    - name: Run the docker container
+    - name: Run the docker container, and the API tests
       run: |
         docker run -p 3000:3000 \
           -e DB_HOST=${{ secrets.DB_HOST }} \
@@ -64,11 +64,7 @@ jobs:
           -e DB_NAME=${{ secrets.DB_NAME }} \
           -d ghcr.io/varunshaji98/investsavvy:latest
         docker ps
-    - name: Login to Postman CLI
-      run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
-    - name: Run API tests
-      run: |
-        docker images
-        docker ps
+        postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
         postman collection run "33397024-6c70459c-802f-464e-8160-f7053090d68a" \
           -e "33397024-1dbd4062-670f-4bde-b475-04a9a4eb831e"
+        
