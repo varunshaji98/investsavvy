@@ -31,6 +31,6 @@ jobs:
           -e DB_USER=${{ secrets.DB_USER }} \
           -e DB_PASS=${{ secrets.DB_PASS }} \
           -e DB_NAME=${{ secrets.DB_NAME }} \
-        ghcr.io/varunshaji98/dockerimg_name
+        ghcr.io/varunshaji98/$dockerimg_name
     - name: Push to Github Container Registry
       run: docker push ghcr.io/varunshaji98/$dockerimg_name
