@@ -64,7 +64,7 @@ jobs:
           -e DB_USER=${{ secrets.DB_USER }} \
           -e DB_PASS=${{ secrets.DB_PASS }} \
           -e DB_NAME=${{ secrets.DB_NAME }} \
-          -d ghcr.io/varunshaji98/investsavvy
+          ghcr.io/varunshaji98/investsavvy
         sleep 10
     - name: Run API tests
       run: |
