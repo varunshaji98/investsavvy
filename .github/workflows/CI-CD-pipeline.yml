@@ -33,4 +33,4 @@ jobs:
           -e DB_NAME=${{ secrets.DB_NAME }} \
           $dockerimg_name
     - name: Push to Github Container Registry
-      run: docker push ghcr.io/varunshaji98/$dockerimg_name
+      run: docker push $dockerimg_name
