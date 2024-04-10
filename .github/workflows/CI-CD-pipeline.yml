@@ -57,15 +57,15 @@ jobs:
     - name: Run the docker container
       run: |
         docker run -p 3000:3000 \
-        -e DB_HOST=${{ secrets.DB_HOST }} \
-        -e DB_PORT=${{ secrets.DB_PORT }} \
-        -e DB_USER=${{ secrets.DB_USER }} \
-        -e DB_PASS=${{ secrets.DB_PASS }} \
-        -e DB_NAME=${{ secrets.DB_NAME }} \
-        -d ghcr.io/varunshaji98/investsavvy:latest
+          -e DB_HOST=${{ secrets.DB_HOST }} \
+          -e DB_PORT=${{ secrets.DB_PORT }} \
+          -e DB_USER=${{ secrets.DB_USER }} \
+          -e DB_PASS=${{ secrets.DB_PASS }} \
+          -e DB_NAME=${{ secrets.DB_NAME }} \
+          -d ghcr.io/varunshaji98/investsavvy:latest
     - name: Login to Postman CLI
       run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
     - name: Run API tests
       run: |
         postman collection run "33397024-6c70459c-802f-464e-8160-f7053090d68a" \
-        -e "33397024-1dbd4062-670f-4bde-b475-04a9a4eb831e"
+          -e "33397024-1dbd4062-670f-4bde-b475-04a9a4eb831e"
