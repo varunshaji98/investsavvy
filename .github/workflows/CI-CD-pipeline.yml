@@ -90,6 +90,8 @@ jobs:
     steps:
     - uses: actions/delete-package-versions@v5
       with:
-        package-name: 'investsavvy'
-        package-type: 'container'
+        owner: varunshaji98
+        package-name: investsavvy
+        package-type: container
+        ignore-versions: ^latest$
         min-versions-to-keep: 3
