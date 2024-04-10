@@ -22,11 +22,12 @@ jobs:
     - name: Build the Docker image
       run: |
         export dockerimg_name=ghcr.io/varunshaji98/investsavvy:$(date +%s)
+        echo $dockerimg_name > /tmp/dockerimg_name 
         docker build . --file backend/Dockerfile --tag $dockerimg_name
     - name: Do a quick sanity test on the docker image
       run: |
         docker images
-        echo $dockerimg_name
+        export dockerimg_name=`echo $dockerimg_name`
         docker run -p 3000:3000 \
           -e DB_HOST=${{ secrets.DB_HOST }} \
           -e DB_PORT=${{ secrets.DB_PORT }} \
