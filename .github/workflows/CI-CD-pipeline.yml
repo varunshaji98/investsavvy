@@ -82,3 +82,14 @@ jobs:
         deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
       run: |
         curl "$deploy_url"
+
+  cleanup-packages:
+    if: ${{ always() }}
+    needs: [docker-build-push, automated-api-tests]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/delete-package-versions@v5
+      with:
+        package-name: 'ghcr.io/varunshaji98/investsavvy'
+        package-type: 'container'
+        min-versions-to-keep: 3
