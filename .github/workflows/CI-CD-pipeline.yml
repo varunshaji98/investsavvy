@@ -23,7 +23,7 @@ jobs:
       run: |
         export dockerimg_name=ghcr.io/varunshaji98/investsavvy:$(date +%s)
         echo $dockerimg_name > /tmp/dockerimg_name 
-        docker build . --file backend/Dockerfile --tag $dockerimg_name
+        docker build . --file backend/Dockerfile --tag $dockerimg_name --tag latest
     - name: Do a quick sanity test on the docker image
       run: |
         docker images
@@ -38,9 +38,10 @@ jobs:
     - name: Push to Github Container Registry
       run: |
         export dockerimg_name=`cat /tmp/dockerimg_name`
-        docker push $dockerimg_name
+        docker push -a $dockerimg_name
 
   automated-api-tests:
+    needs: docker-build
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
