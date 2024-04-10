@@ -35,7 +35,7 @@ jobs:
           -d ghcr.io/varunshaji98/investsavvy:latest
     - name: Push to Github Container Registry
       run: |
-        docker push -a ghcr.io/varunshaji98/investsavvy:latest
+        docker push -a ghcr.io/varunshaji98/investsavvy
 
   automated-api-tests:
     needs: docker-build
