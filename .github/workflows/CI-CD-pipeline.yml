@@ -21,24 +21,21 @@ jobs:
         password: ${{ secrets.PROJECT_GITHUB_TOKEN }}
     - name: Build the Docker image
       run: |
-        export dockerimg_name=ghcr.io/varunshaji98/investsavvy:$(date +%s)
-        echo $dockerimg_name > /tmp/dockerimg_name 
-        docker build . --file backend/Dockerfile --tag $dockerimg_name --tag latest
+        docker build . --file backend/Dockerfile \
+          --tag ghcr.io/varunshaji98/investsavvy:$(date +%s) \
+          --tag ghcr.io/varunshaji98/investsavvy:latest
     - name: Do a quick sanity test on the docker image
       run: |
-        docker images
-        export dockerimg_name=`cat /tmp/dockerimg_name`
         docker run -p 3000:3000 \
           -e DB_HOST=${{ secrets.DB_HOST }} \
           -e DB_PORT=${{ secrets.DB_PORT }} \
           -e DB_USER=${{ secrets.DB_USER }} \
           -e DB_PASS=${{ secrets.DB_PASS }} \
           -e DB_NAME=${{ secrets.DB_NAME }} \
-          -d $dockerimg_name
+          -d ghcr.io/varunshaji98/investsavvy:latest
     - name: Push to Github Container Registry
       run: |
-        export dockerimg_name=`cat /tmp/dockerimg_name`
-        docker push -a $dockerimg_name
+        docker push -a ghcr.io/varunshaji98/investsavvy:latest
 
   automated-api-tests:
     needs: docker-build
