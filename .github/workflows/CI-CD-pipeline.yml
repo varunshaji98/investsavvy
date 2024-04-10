@@ -26,6 +26,7 @@ jobs:
     - name: Do a quick sanity test on the docker image
       run: |
         docker images
+        echo $dockerimg_name
         docker run -p 3000:3000 \
           -e DB_HOST=${{ secrets.DB_HOST }} \
           -e DB_PORT=${{ secrets.DB_PORT }} \
