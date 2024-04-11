@@ -13,6 +13,8 @@
 - [Documentation To-Do](#documentation-to-do)
 <!-- TOC end -->
 
+[![CI/CD Workflow](https://github.com/varunshaji98/investsavvy/actions/workflows/CI-CD-pipeline.yml/badge.svg?branch=main)](https://github.com/varunshaji98/investsavvy/actions/workflows/CI-CD-pipeline.yml)
+
 ## Project Description
 
 ### Project Website
