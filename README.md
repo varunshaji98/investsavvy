@@ -1,9 +1,15 @@
+# <center>InvestSavvy
+[![CI/CD Workflow](https://github.com/varunshaji98/investsavvy/actions/workflows/CI-CD-pipeline.yml/badge.svg?branch=main)](https://github.com/varunshaji98/investsavvy/actions/workflows/CI-CD-pipeline.yml)
 <!-- TOC start -->
 - [Project Description](#project-description)
   - [Project Website](#project-website)
   - [External Applications Used](#external-applications-used)
-  - [Website Pages](#website-pages)
-  - [Features Implemented](#features-implemented)
+- [API Specifications](#api-specifications)
+- [Frontend Website](#frontend-website)
+- [Backend Server](#backend-server)
+- [Database](#database)
+  - [Database Structure](#database-structure)
+- [Features Implemented](#features-implemented)
   - [Features To-Do](#features-to-do)
 - [CI/CD WorkFlow](#cicd-workflow)
   - [Docker Containerization](#docker-containerization)
@@ -13,9 +19,11 @@
 - [Documentation To-Do](#documentation-to-do)
 <!-- TOC end -->
 
-[![CI/CD Workflow](https://github.com/varunshaji98/investsavvy/actions/workflows/CI-CD-pipeline.yml/badge.svg?branch=main)](https://github.com/varunshaji98/investsavvy/actions/workflows/CI-CD-pipeline.yml)
+
 
 ## Project Description
+
+A sample financial website that provides users with insights into their financial risk profiles and suggeste suitable financial products for investment, allowing them to manage their watchlists 
 
 ### Project Website
 
@@ -26,7 +34,8 @@ Demo the project website at https://investsavvy.onrender.com/
 Frontend website and Backend server deployed using [Render](https://render.com/)  
 Database hosted at [Aiven for MySQL](https://aiven.io/docs/products/mysql/overview)
 
-### Website Pages
+## API Specifications
+## Frontend Website
 **Landing Page** -  Main site to highlight the purpose and functionality of the website  
 ![Landing Page](public/frontend/img/InvestSavvy-Landing.png)
 
@@ -44,7 +53,15 @@ Database hosted at [Aiven for MySQL](https://aiven.io/docs/products/mysql/overvi
 **Watchlist** - Page where user can create their own watchlist selection  
 ![Watchlist](public/frontend/img/InvestSavvy-Watchlist.png)
 
-### Features Implemented
+## Backend Server
+
+## Database
+
+### Database Structure
+
+Users
+
+## Features Implemented
 
 ### Features To-Do
 - External Financial API
