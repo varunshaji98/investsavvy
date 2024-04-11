@@ -1,7 +1,6 @@
 ## Database Structure
 
 **Users** - Stores all data of the users
-<center>
 
 |      Name       |     Type     |
 | :-------------: | :----------: |
@@ -13,13 +12,7 @@
 | risk_profile_id |     int      |
 |    user_type    | varchar(255) |
 
-</center>
-
-***
-
 **Survey_Results** - stores the financial risk survey results of each user
-
-<center>
 
 |          Name         |     Type     |
 |:---------------------:|:------------:|
@@ -34,13 +27,7 @@
 |    investment_goal    | varchar(255) |
 |  investment_knowledge | varchar(255) |
 
-</center>
-
-***
-
 **Tickers** - stores all the financial product (stock, ETF, REITs) details used for recommendations
-
-<center>
 
 |       Name      |     Type     |
 |:---------------:|:------------:|
@@ -51,5 +38,3 @@
 |   description   |  text(65535) |
 |     industry    | varchar(255) |
 | risk_profile_id |      int     |
-
-</center>
