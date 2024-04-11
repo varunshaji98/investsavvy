@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: InvestSavvy Backend API
-  description: API for managing survey data, users, ticker information, and watchlists
+  description: API for managing users, risk-survey data, ticker information, and watchlists
   version: 1.0.0
 
 servers:
