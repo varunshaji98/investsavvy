@@ -9,7 +9,8 @@
 - [JOB 2: automated-api-tests](#job-2-automated-api-tests)
   - [Postman Command Line Integration (CLI)](#postman-command-line-integration-cli)
     - [Postman Collection and Environment](#postman-collection-and-environment)
-  - [Pull image from GitHub Container Registry](#pull-image-from-github-container-registry)
+  - [Pull docker image from GitHub Container Registry](#pull-docker-image-from-github-container-registry)
+  - [Run the container](#run-the-container)
   - [Install and Run Postman CLI tests](#install-and-run-postman-cli-tests)
 - [JOB 3: deploy-backend](#job-3-deploy-backend)
 
@@ -81,7 +82,7 @@ To check
 
 #### Postman Collection and Environment
 
-### Pull image from GitHub Container Registry
+### Pull docker image from GitHub Container Registry
 ```yml
 automated-api-tests:
     needs: docker-build-push
@@ -97,6 +98,9 @@ automated-api-tests:
         password: ${{ secrets.PROJECT_GITHUB_TOKEN }}
     - name: Pull latest image from Github Container Registry
       run: docker pull ghcr.io/varunshaji98/investsavvy
+```
+### Run the container
+```yml
     - name: Run the docker container
       run: |
         docker run -p 3000:3000 \
