@@ -28,6 +28,7 @@ on:
     paths:
       - backend/**
 ```
+![CI/CD Workflow](images/ci-cd-workflow.png)
 
 ## JOB 1: docker-build-push
 
@@ -75,6 +76,7 @@ To check
       run: |
         docker push -a ghcr.io/varunshaji98/investsavvy
 ```
+![GitHub Container Registry](images/investsavvy-ghcr.png)
 
 ## JOB 2: automated-api-tests
 
@@ -127,6 +129,8 @@ automated-api-tests:
         postman collection run "33397024-6c70459c-802f-464e-8160-f7053090d68a" \
           -e "33397024-1dbd4062-670f-4bde-b475-04a9a4eb831e"
 ```
+
+![API Test Results](images/api-test-results.png)
 
 ## JOB 3: deploy-backend
 
