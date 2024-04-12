@@ -4,11 +4,10 @@
 - [Project Description](#project-description)
   - [Project Website](#project-website)
   - [External Applications Used](#external-applications-used)
-- [API Specifications](#api-specifications)
 - [Frontend Website](#frontend-website)
+- [API Specifications](#api-specifications)
 - [Backend Server](#backend-server)
 - [Database](#database)
-  - [Database Structure](#database-structure)
 - [Features Implemented](#features-implemented)
   - [Features To-Do](#features-to-do)
 - [CI/CD WorkFlow](#cicd-workflow)
@@ -16,7 +15,6 @@
   - [API Unit Testing](#api-unit-testing)
   - [Deploying Backend to Production](#deploying-backend-to-production)
 - [Directory Structure](#directory-structure)
-- [Documentation To-Do](#documentation-to-do)
 
 ## Project Description
 
@@ -31,32 +29,24 @@ Demo the project website at https://investsavvy.onrender.com/
 Frontend website and Backend server deployed using [Render](https://render.com/)  
 Database hosted at [Aiven for MySQL](https://aiven.io/docs/products/mysql/overview)
 
-## API Specifications
 ## Frontend Website
-**Landing Page** -  Main site to highlight the purpose and functionality of the website  
-![Landing Page](public/frontend/img/InvestSavvy-Landing.png)
+- **Landing Page** -  Main site to highlight the purpose and functionality of the website  
+- **Account Login/registration** - To be integrated with Auth0
+- **User Dashboard** - for users to have an overview of their account
+- **Risk Assessment** - Risk profile assessment to understand user’s investment background  
+- **Historical Stock Data** - A chart to showcase the past performance of stocks  
+- **Watchlist** - Page where user can create their own watchlist selection  
 
-**Account Login/registration** - To be integrated with Auth0  
+More details in [FrontEnd Documentation](docs/frontend.md)
 
-**User Dashboard** for user to have an overview of their account    
-![User Dashboard](public/frontend/img/InvestSavvy-Dashboard.png)
+## API Specifications
 
-**Risk Assessment** - Risk profile assessment to understand user’s investment background  
-![Risk Assessment](public/frontend/img/InvestSavvy-RiskAssessment.png)
-
-**Historical Stock** - A chart to showcase the past performance of stocks  
-![Historical Data](public/frontend/img/InvestSavvy-Historical.png)
-
-**Watchlist** - Page where user can create their own watchlist selection  
-![Watchlist](public/frontend/img/InvestSavvy-Watchlist.png)
+More details in [API Documentation](docs/api.md)
 
 ## Backend Server
 
 ## Database
-
-### Database Structure
-
-Users
+More details in [Database Documentation](docs/database.md)
 
 ## Features Implemented
 
@@ -65,6 +55,8 @@ Users
 - Auth0
 
 ## CI/CD WorkFlow
+
+![CI/CD Workflow](docs/images/ci-cd-workflow.png)
 
 Insert pipeline image and explanation - GitHub Actions
 
@@ -88,7 +80,3 @@ Deploy using Render WebHook
 
 - **/public/frontend**: Contains the source code for the website
 - **/backend**: Contains the source code for the backend server
-
-## Documentation To-Do
-- Database Structure
-- API Specification

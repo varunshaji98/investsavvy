@@ -3,20 +3,24 @@
 
 - [Objective](#objective)
 - [JOB 1: docker-build-push](#job-1-docker-build-push)
-  - [Containerize into Docker image](#containerize-into-docker-image)
-  - [Quick Sanity Test](#quick-sanity-test)
-  - [Push to GitHub Container Registry](#push-to-github-container-registry)
+  - [STEP 1: Containerize into Docker image](#step-1-containerize-into-docker-image)
+  - [STEP 2: Quick Sanity Test](#step-2-quick-sanity-test)
+  - [STEP 3: Push to GitHub Container Registry](#step-3-push-to-github-container-registry)
 - [JOB 2: automated-api-tests](#job-2-automated-api-tests)
   - [Postman Command Line Integration (CLI)](#postman-command-line-integration-cli)
-    - [Postman Collection and Environment](#postman-collection-and-environment)
-  - [Pull docker image from GitHub Container Registry](#pull-docker-image-from-github-container-registry)
-  - [Run the container](#run-the-container)
-  - [Install and Run Postman CLI tests](#install-and-run-postman-cli-tests)
+    - [InvestSavvy Postman Collection and Test Environment](#investsavvy-postman-collection-and-test-environment)
+    - [Test definitions](#test-definitions)
+  - [STEP 1: Pull docker image from GitHub Container Registry](#step-1-pull-docker-image-from-github-container-registry)
+  - [STEP 2: Run the container](#step-2-run-the-container)
+  - [STEP 3: Install and Run Postman CLI tests](#step-3-install-and-run-postman-cli-tests)
 - [JOB 3: deploy-backend](#job-3-deploy-backend)
 
 
 ## Objective
 
+Implement a CI/CD Workflow through GitHub Actions that involves containerizing the backend server into a docker image, testing its API functionalities through automated unit testing, and deploying the server if everything works. 
+
+This workflow is limited to push/pull requests into backend folder of main branch
 ```yml
 on:
   push:
@@ -32,8 +36,12 @@ on:
 
 ## JOB 1: docker-build-push
 
-### Containerize into Docker image
+### STEP 1: Containerize into Docker image
+
+The main reson 
+[Dockerfile](../backend/Dockerfile)  
 Tagged with both latest and timestamp
+
 
 ```yml
 docker-build-push:
@@ -48,7 +56,7 @@ docker-build-push:
           --tag ghcr.io/varunshaji98/investsavvy:latest
 ```
 
-### Quick Sanity Test
+### STEP 2: Quick Sanity Test
 To check
 
 ```yml
@@ -63,7 +71,7 @@ To check
           -d ghcr.io/varunshaji98/investsavvy:latest
 ```
 
-### Push to GitHub Container Registry
+### STEP 3: Push to GitHub Container Registry
 
 ```yml
     - name: Login to GitHub Container Registry
@@ -82,9 +90,61 @@ To check
 
 ### Postman Command Line Integration (CLI) 
 
-#### Postman Collection and Environment
+The [Postman CLI](https://learning.postman.com/docs/postman-cli/postman-cli-overview/) is a secure command-line companion for Postman. It enables you to:
+- Run a collection with its collection ID or path.
+- Send run results to Postman by default.
+- Supports sign in and sign out.
 
-### Pull docker image from GitHub Container Registry
+#### InvestSavvy Postman Collection and Test Environment
+
+
+#### Test definitions
+```js
+// Test 1/5
+pm.test("Response status code is 200", function () {
+  pm.response.to.have.status(200);
+});
+
+// Test 2/5
+pm.test("Symbol is a non-empty string", function () {
+    const responseData = pm.response.json();
+    
+    responseData.forEach(function(item) {
+        pm.expect(item.symbol).to.be.a('string').and.to.have.lengthOf.at.least(1, "Symbol should be a non-empty string");
+    });
+});
+
+// Test 3/5
+pm.test("Name is a non-empty string", function () {
+  const responseData = pm.response.json();
+
+  responseData.forEach(function(item) {
+    pm.expect(item.name).to.be.a('string').and.to.have.lengthOf.at.least(1, "Name should not be empty");
+  });
+});
+
+// Test 4/5
+pm.test("Risk_profile_id is a positive integer", function () {
+  const responseData = pm.response.json();
+
+  responseData.forEach(function(item) {
+    pm.expect(item.risk_profile_id).to.be.a('number').above(0);
+  });
+});
+
+// Test 5/5
+pm.test("Each item's risk_profile_id corresponds to the one sent in the request query", function () {
+    const riskProfileId = pm.request.url.query.toObject().rpid;
+    const responseData = pm.response.json();
+
+    responseData.forEach(function(item) {
+        pm.expect(item.risk_profile_id.toString()).to.equal(riskProfileId);
+    });
+});
+```
+More details on API test cases in [API Documentation](api.md)
+
+### STEP 1: Pull docker image from GitHub Container Registry
 ```yml
 automated-api-tests:
     needs: docker-build-push
@@ -101,7 +161,7 @@ automated-api-tests:
     - name: Pull latest image from Github Container Registry
       run: docker pull ghcr.io/varunshaji98/investsavvy
 ```
-### Run the container
+### STEP 2: Run the container
 ```yml
     - name: Run the docker container
       run: |
@@ -115,7 +175,7 @@ automated-api-tests:
         sleep 5
 ```
 
-### Install and Run Postman CLI tests
+### STEP 3: Install and Run Postman CLI tests
 
 ```yml
     - name: Install Postman CLI
@@ -134,7 +194,8 @@ automated-api-tests:
 
 ## JOB 3: deploy-backend
 
-Render API Hook to manually deploy commmit  
+Render API Hook to manually deploy commmit
+
 ```yml
 deploy-backend:
     needs: [docker-build-push, automated-api-tests]
