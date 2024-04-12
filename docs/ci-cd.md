@@ -208,7 +208,8 @@ Postman CLI is installed in the host machine and logged into using `POSTMAN_API_
           -e "33397024-1dbd4062-670f-4bde-b475-04a9a4eb831e"
 ```
 
-Test Results for one of the passed jobs in shown below. 
+Test Results for one of the passed jobs in shown below.
+ 
 ![API Test Results](images/api-test-results.png)
 
 ## JOB 3: deploy-backend

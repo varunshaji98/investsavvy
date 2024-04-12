@@ -7,13 +7,9 @@
 - [Frontend Website](#frontend-website)
 - [API Specifications](#api-specifications)
 - [Backend Server](#backend-server)
-- [Database](#database)
-- [Features Implemented](#features-implemented)
-  - [Features To-Do](#features-to-do)
+  - [Database](#database)
+- [\[To-Do\] Features List](#to-do-features-list)
 - [CI/CD WorkFlow](#cicd-workflow)
-  - [Docker Containerization](#docker-containerization)
-  - [API Unit Testing](#api-unit-testing)
-  - [Deploying Backend to Production](#deploying-backend-to-production)
 - [Directory Structure](#directory-structure)
 
 ## Project Description
@@ -37,46 +33,39 @@ Database hosted at [Aiven for MySQL](https://aiven.io/docs/products/mysql/overvi
 - **Historical Stock Data** - A chart to showcase the past performance of stocks  
 - **Watchlist** - Page where user can create their own watchlist selection  
 
-More details in [FrontEnd Documentation](docs/frontend.md)
+More details in [FrontEnd Documentation](docs/frontend.md).
 
 ## API Specifications
 
-More details in [API Documentation](docs/api.md)
+More details in [API Documentation](docs/api.md).
 
 ## Backend Server
 
-## Database
-More details in [Database Documentation](docs/database.md)
+**Node.js** is used to create a web server listening for HTTP requests as per the defined API specification. It is connected to an externally hosted SQL database.
 
-## Features Implemented
+### Database
 
-### Features To-Do
+[Aiven for MySQL](https://aiven.io/docs/products/mysql/overview) is used to host the database. Database structure and more details in [Database Documentation](docs/database.md).
+
+
+## [To-Do] Features List
 - External Financial API
-- Auth0
+- Auth0 integration
+- Subcription plan and payment method like Stripe
 
 ## CI/CD WorkFlow
 
 ![CI/CD Workflow](docs/images/ci-cd-workflow.png)
 
-Insert pipeline image and explanation - GitHub Actions
+GitHub Actions is used to trigger an automated workflow for the backend, this involves:
+- containerizing the backend server into a docker image
+- testing its API functionalities through automated unit testing, and 
+- deploying the server if everything works. 
 
-### Docker Containerization
-
-Build Docker container  
-Do Sanity Test  
-Pushish to GitHub Container Registry - insert link
-
-### API Unit Testing
-
-Pull Docker Image from GHCR and run  
-Postman Collection and Test Environment  
-Postman Commandline Integration (CLI)  
-
-### Deploying Backend to Production
-
-Deploy using Render WebHook
+More details in [CI/CD Documentation](docs/ci-cd.md).
 
 ## Directory Structure
 
-- **/public/frontend**: Contains the source code for the website
-- **/backend**: Contains the source code for the backend server
+- `/public/frontend`: Contains the source code for the website
+- `/backend`: Contains the source code for the backend server
+- `/docs`: All additional documentation
