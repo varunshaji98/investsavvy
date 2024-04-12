@@ -9,7 +9,6 @@
 - [JOB 2: automated-api-tests](#job-2-automated-api-tests)
   - [Postman Command Line Integration (CLI)](#postman-command-line-integration-cli)
     - [InvestSavvy Postman Collection and Test Environment](#investsavvy-postman-collection-and-test-environment)
-    - [Test definitions](#test-definitions)
   - [STEP 1: Pull docker image from GitHub Container Registry](#step-1-pull-docker-image-from-github-container-registry)
   - [STEP 2: Run the container](#step-2-run-the-container)
   - [STEP 3: Install and Run Postman CLI tests](#step-3-install-and-run-postman-cli-tests)
@@ -23,6 +22,8 @@ Implement a CI/CD Workflow through GitHub Actions that involves:
 - testing its API functionalities through automated unit testing, and 
 - deploying the server if everything works. 
 
+![CI/CD Workflow](images/ci-cd-workflow.png)
+
 This workflow is limited to push/pull requests into backend folder of main branch
 ```yml
 on:
@@ -35,7 +36,6 @@ on:
     paths:
       - backend/**
 ```
-![CI/CD Workflow](images/ci-cd-workflow.png)
 
 ## JOB 1: docker-build-push
 
@@ -58,6 +58,9 @@ docker-build-push:
 
 ### STEP 2: Sanity Test
 A quick test is done to check if the docker container can start without errors.
+-  `-p 3000:3000` exposes container's port 3000 to the host machine's port 3000
+-  `-e` (or `--env`) arguments passed here are the environment variables needed to run the containerised server
+-  `-d` starts a detached container
 
 ```yml
     - name: Do a quick sanity test on the docker image
@@ -86,13 +89,15 @@ A quick test is done to check if the docker container can start without errors.
       run: |
         docker push -a ghcr.io/varunshaji98/investsavvy
 ```
-Once pushed into registry, the packages are available at [ghcr.io/varunshaji98/investsavvy](ghcr.io/varunshaji98/investsavvy). Images are tagged with both `current_timestamp` and `latest` and the latest tagged image changes with each successful commit job. 
+Once pushed into registry, the packages are available at [ghcr.io/varunshaji98/investsavvy](ghcr.io/varunshaji98/investsavvy). Images are tagged with both `current_timestamp` and `latest`; the latest tagged image changes with each successful commit job. 
 
 >**Note**: GitHub Container Registry only provides 500MB free, and the registry needs to be cleaned regularly. Data transfers are unlimited if its through GitHub Actions, otherwise data out is limited to 2GB per month.
 
 ![GitHub Container Registry](images/investsavvy-ghcr.png)
 
 ## JOB 2: automated-api-tests
+
+Automated API unit tests are performed on the newly dockerized backend server using Postman CLI. 
 
 ### Postman Command Line Integration (CLI) 
 
@@ -103,10 +108,10 @@ The [Postman CLI](https://learning.postman.com/docs/postman-cli/postman-cli-over
 
 #### InvestSavvy Postman Collection and Test Environment
 
-Test Environment with sample configurable variables is shown below
-![Postman Test Environment](images/postman-test-environment.png)
+The API specification and collection was created in Postman during development, these are reused for testing. Test cases can be defined for each API call and different variables can be passed to the call based on which environment is selected. 
 
-#### Test definitions
+The Test Environment with sample configurable variables is shown below
+![Postman Test Environment](images/postman-test-environment.png)
 
 A Sample test series defined for one API `POST` call is given below. These are available within the Postman Collection. 
 ```js
@@ -155,6 +160,7 @@ pm.test("Each item's risk_profile_id corresponds to the one sent in the request 
 More details on API test cases in [API Documentation](api.md)
 
 ### STEP 1: Pull docker image from GitHub Container Registry
+
 ```yml
 automated-api-tests:
     needs: docker-build-push
@@ -187,6 +193,8 @@ automated-api-tests:
 
 ### STEP 3: Install and Run Postman CLI tests
 
+Postman CLI is installed in the host machine and logged into using `POSTMAN_API_KEY` saved as secret. The tests are run by passing the `collection_id` and `environment_id`
+
 ```yml
     - name: Install Postman CLI
       run: |
@@ -200,11 +208,12 @@ automated-api-tests:
           -e "33397024-1dbd4062-670f-4bde-b475-04a9a4eb831e"
 ```
 
+Test Results for one of the passed jobs in shown below. 
 ![API Test Results](images/api-test-results.png)
 
 ## JOB 3: deploy-backend
 
-Render API Hook to manually deploy commmit
+[Render Deploy Hooks](https://docs.render.com/deploy-hooks) are used to manually deploy the backend server on a hosting site - Render. `RENDER_DEPLOY_HOOK_URL` is stored as a secret.
 
 ```yml
 deploy-backend:
@@ -217,4 +226,7 @@ deploy-backend:
       run: |
         curl "$deploy_url"
 ```
+The server is then successfully deployed on the hosting site.
+
+![Render Deploy](images/render-deploy.png)
  
