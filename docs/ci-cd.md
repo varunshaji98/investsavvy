@@ -4,7 +4,7 @@
 - [Objective](#objective)
 - [JOB 1: docker-build-push](#job-1-docker-build-push)
   - [STEP 1: Containerize into Docker image](#step-1-containerize-into-docker-image)
-  - [STEP 2: Quick Sanity Test](#step-2-quick-sanity-test)
+  - [STEP 2: Sanity Test](#step-2-sanity-test)
   - [STEP 3: Push to GitHub Container Registry](#step-3-push-to-github-container-registry)
 - [JOB 2: automated-api-tests](#job-2-automated-api-tests)
   - [Postman Command Line Integration (CLI)](#postman-command-line-integration-cli)
@@ -18,7 +18,10 @@
 
 ## Objective
 
-Implement a CI/CD Workflow through GitHub Actions that involves containerizing the backend server into a docker image, testing its API functionalities through automated unit testing, and deploying the server if everything works. 
+Implement a CI/CD Workflow through GitHub Actions that involves: 
+- containerizing the backend server into a docker image
+- testing its API functionalities through automated unit testing, and 
+- deploying the server if everything works. 
 
 This workflow is limited to push/pull requests into backend folder of main branch
 ```yml
@@ -38,10 +41,7 @@ on:
 
 ### STEP 1: Containerize into Docker image
 
-The main reson 
-[Dockerfile](../backend/Dockerfile)  
-Tagged with both latest and timestamp
-
+The backend server is containerised into Docker images for server deployment into test environment and eventually for production. This step uses the [Dockerfile](../backend/Dockerfile) defined to build the image.
 
 ```yml
 docker-build-push:
@@ -56,8 +56,8 @@ docker-build-push:
           --tag ghcr.io/varunshaji98/investsavvy:latest
 ```
 
-### STEP 2: Quick Sanity Test
-To check
+### STEP 2: Sanity Test
+A quick test is done to check if the docker container can start without errors.
 
 ```yml
     - name: Do a quick sanity test on the docker image
@@ -73,6 +73,8 @@ To check
 
 ### STEP 3: Push to GitHub Container Registry
 
+[GitHub Container Registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry) is used to store the built images. These are private packages accessible to the repo collaborators, hence a `GITHUB_TOKEN` is needed to authenticate and login to the registry. This is stored as a secret variable.  
+
 ```yml
     - name: Login to GitHub Container Registry
       uses: docker/login-action@v3
@@ -84,6 +86,10 @@ To check
       run: |
         docker push -a ghcr.io/varunshaji98/investsavvy
 ```
+Once pushed into registry, the packages are available at [ghcr.io/varunshaji98/investsavvy](ghcr.io/varunshaji98/investsavvy). Images are tagged with both `current_timestamp` and `latest` and the latest tagged image changes with each successful commit job. 
+
+>**Note**: GitHub Container Registry only provides 500MB free, and the registry needs to be cleaned regularly. Data transfers are unlimited if its through GitHub Actions, otherwise data out is limited to 2GB per month.
+
 ![GitHub Container Registry](images/investsavvy-ghcr.png)
 
 ## JOB 2: automated-api-tests
@@ -97,8 +103,12 @@ The [Postman CLI](https://learning.postman.com/docs/postman-cli/postman-cli-over
 
 #### InvestSavvy Postman Collection and Test Environment
 
+Test Environment with sample configurable variables is shown below
+![Postman Test Environment](images/postman-test-environment.png)
 
 #### Test definitions
+
+A Sample test series defined for one API `POST` call is given below. These are available within the Postman Collection. 
 ```js
 // Test 1/5
 pm.test("Response status code is 200", function () {
