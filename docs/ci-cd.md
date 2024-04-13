@@ -17,7 +17,7 @@
 
 ## Objective
 
-Implement a CI/CD Workflow through GitHub Actions that involves: 
+Implement an automated CI/CD Workflow through GitHub Actions that involves: 
 - containerizing the backend server into a docker image
 - testing its API functionalities through automated unit testing, and 
 - deploying the server if everything works. 
