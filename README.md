@@ -18,7 +18,8 @@ A sample financial website that provides users with insights into their financia
 
 ### Project Website
 
-Demo the project website at https://investsavvy.onrender.com/
+Demo the project website at https://investsavvy.onrender.com/. 
+Login authentication has been disabled, type out any username/password to access.
 
 ### External Applications Used
 
