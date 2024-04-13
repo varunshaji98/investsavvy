@@ -19,7 +19,8 @@ A sample financial website that provides users with insights into their financia
 ### Project Website
 
 Demo the project website at https://investsavvy.onrender.com/.  
-Login authentication has been disabled, type out any username/password to access.
+> Note: Login authentication has been disabled, type out any username/password to access.
+> The backend server will spin down with inactivity, please expect around ~50sec for the server to boot up while visiting the website the first time.
 
 ### External Applications Used
 
